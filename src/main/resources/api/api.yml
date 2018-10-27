@@ -1,0 +1,1523 @@
+swagger: "2.0"
+info:
+  description: "Here will be more information usefull for front-end developers"
+  version: "0.0.1 ALPHA"
+  title: "RPG API"
+  contact:
+    email: "jurasz.do@gmail.com"
+host: "localhost"
+basePath: "/"
+tags:
+- name: "profession"
+  description: "Everything about profession"
+- name: "skills"
+  description: "Everything about skills"
+- name: "abilities"
+  description: "everything about abilities"
+- name: "items"
+  description: "everything about items (not weapons or armors)"
+- name: "weapons"
+  description: "everything about weapons"
+- name: "armors"
+  description: "everything about armors"
+- name: "profession"
+  description: "everything about profession"
+- name: "characters"
+  description: "everything about characters"
+- name: "rools"
+  description: "Did you roll but GM haven't time for you? Your welcome here!"
+schemes:
+- "http"
+paths:
+  /skills:
+    post:
+      tags:
+      - "skills"
+      summary: "Create new skill"
+      operationId: "newSkill"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Body required skill object"
+        required: true
+        schema:
+          $ref: '#/definitions/CreateSkill'
+      responses:
+        200:
+          description: "Successed created skill"
+        422:
+          description: "Invalid parameter exception"
+        500:
+          description: "Server unexpected error"
+    put:
+      tags:
+      - "skills"
+      summary: "Update skill by id in body"
+      operationId: "updateSkill"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Body required skill object"
+        required: true
+        schema:
+          $ref: '#/definitions/UpdateSkill'
+      responses:
+        200:
+          description: "Successed updated skill"
+        404:
+          description: "Skill not found"
+        422:
+          description: "Invalid parameter exception"
+        500:
+          description: "Server unexpected error"
+    get:
+      tags:
+      - "skills"
+      summary: "Get all skills"
+      operationId: "getSkills"
+      produces:
+      - "application/json" 
+      responses:
+        200:
+          description: "Succeed operation"
+          schema:
+            type: "array"
+            items:
+              $ref: '#/definitions/SkillResponse'
+        204:
+          description: "Succeed operation but empty response"
+  /skills/{id}:
+    get:
+      tags: 
+      - skills
+      summary: "Get skill by id" 
+      operationId: "getSkillById"
+      produces: 
+      - "application/json"
+      parameters: 
+      - name: "id"
+        in: "path"
+        description: "ID of skill to return"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: '#/definitions/SkillResponse'
+        404:
+          description: "Skill not found"
+    delete:
+      tags: 
+      - skills
+      summary: "Delete skill by id" 
+      operationId: "deleteSkillById"
+      parameters: 
+      - name: "id"
+        in: "path"
+        description: "ID of skill to return"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Skill deleted"
+        404:
+          description: "Skill not found"
+        500:
+          description: "Unexpected server error"
+  /abilities:
+    post:
+      tags:
+      - "abilities"
+      summary: "Create new ability"
+      operationId: "newAbility"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Body required ability object"
+        required: true
+        schema:
+          $ref: '#/definitions/CreateAbility'
+      responses:
+        200:
+          description: "Successed created ability"
+        422:
+          description: "Invalid parameter exception"
+        500:
+          description: "Server unexpected error"
+    put:
+      tags:
+      - "abilities"
+      summary: "Update ability by id in body"
+      operationId: "updateAbility"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Body required ability object"
+        required: true
+        schema:
+          $ref: '#/definitions/UpdateAbility'
+      responses:
+        200:
+          description: "Successed updated ability"
+        404:
+          description: "Ability not found"
+        422:
+          description: "Invalid parameter exception"
+        500:
+          description: "Server unexpected error"
+    get:
+      tags:
+      - "abilities"
+      summary: "Get all abilities"
+      operationId: "getAbilities"
+      produces:
+      - "application/json" 
+      responses:
+        200:
+          description: "Succeed operation"
+          schema:
+            type: "array"
+            items:
+              $ref: '#/definitions/AbilityResponse'
+        204:
+          description: "Succeed operation but empty response"
+  /abilities/{id}:
+    get:
+      tags: 
+      - "abilities"
+      summary: "Get ability by id" 
+      operationId: "getAbilityById"
+      produces: 
+      - "application/json"
+      parameters: 
+      - name: "id"
+        in: "path"
+        description: "ID of ability to return"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: '#/definitions/AbilityResponse'
+        404:
+          description: "Ability not found"
+    delete:
+      tags: 
+      - "abilities"
+      summary: "Delete ability by id" 
+      operationId: "deleteAbilityById"
+      parameters: 
+      - name: "id"
+        in: "path"
+        description: "ID of ability to return"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Ability deleted"
+        404:
+          description: "Ability not found"
+        500:
+          description: "Unexpected server error"
+  /items:
+    post:
+      tags:
+      - "items"
+      summary: "Create new item"
+      operationId: "newItem"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Body required item object"
+        required: true
+        schema:
+          $ref: '#/definitions/CreateItem'
+      responses:
+        200:
+          description: "Successed created item"
+        422:
+          description: "Invalid parameter exception"
+        500:
+          description: "Server unexpected error"
+    put:
+      tags:
+      - "items"
+      summary: "Update item by id in body"
+      operationId: "updateItem"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Body required item object"
+        required: true
+        schema:
+          $ref: '#/definitions/UpdateItem'
+      responses:
+        200:
+          description: "Successed updated item"
+        404:
+          description: "Item not found"
+        422:
+          description: "Invalid parameter exception"
+        500:
+          description: "Server unexpected error"
+    get:
+      tags:
+      - "items"
+      summary: "Get all items"
+      operationId: "getItems"
+      produces:
+      - "application/json" 
+      responses:
+        200:
+          description: "Succeed operation"
+          schema:
+            type: "array"
+            items:
+              $ref: '#/definitions/ItemResponse'
+        204:
+          description: "Succeed operation but empty response"
+  /items/{id}:
+    get:
+      tags: 
+      - "items"
+      summary: "Get item by id" 
+      operationId: "getItemById"
+      produces: 
+      - "application/json"
+      parameters: 
+      - name: "id"
+        in: "path"
+        description: "ID of item to return"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: '#/definitions/ItemResponse'
+        404:
+          description: "Item not found"
+    delete:
+      tags: 
+      - "items"
+      summary: "Delete item by id" 
+      operationId: "deleteItemById"
+      parameters: 
+      - name: "id"
+        in: "path"
+        description: "ID of item to return"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Item deleted"
+        404:
+          description: "Item not found"
+        500:
+          description: "Unexpected server error"
+  /armors:
+    post:
+      tags:
+      - "armors"
+      summary: "Create new armor"
+      operationId: "newArmor"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Body required armor object"
+        required: true
+        schema:
+          $ref: '#/definitions/CreateArmor'
+      responses:
+        200:
+          description: "Successed created armor"
+        422:
+          description: "Invalid parameter exception"
+        500:
+          description: "Server unexpected error"
+    put:
+      tags:
+      - "armors"
+      summary: "Update armor by id in body"
+      operationId: "updateArmor"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Body required armor object"
+        required: true
+        schema:
+          $ref: '#/definitions/UpdateArmor'
+      responses:
+        200:
+          description: "Successed updated armor"
+        404:
+          description: "Armor not found"
+        422:
+          description: "Invalid parameter exception"
+        500:
+          description: "Server unexpected error"
+    get:
+      tags:
+      - "armors"
+      summary: "Get all armors"
+      operationId: "getArmors"
+      produces:
+      - "application/json" 
+      responses:
+        200:
+          description: "Succeed operation"
+          schema:
+            type: "array"
+            items:
+              $ref: '#/definitions/ArmorResponse'
+        204:
+          description: "Succeed operation but empty response"
+  /armors/{id}:
+    get:
+      tags: 
+      - "armors"
+      summary: "Get armor by id" 
+      operationId: "getArmorById"
+      produces: 
+      - "application/json"
+      parameters: 
+      - name: "id"
+        in: "path"
+        description: "ID of armor to return"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: '#/definitions/ArmorResponse'
+        404:
+          description: "Armor not found"
+    delete:
+      tags: 
+      - "armors"
+      summary: "Delete armor by id" 
+      operationId: "deleteArmorById"
+      parameters: 
+      - name: "id"
+        in: "path"
+        description: "ID of armor to delete"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Armor deleted"
+        404:
+          description: "Armor not found"
+        500:
+          description: "Unexpected server error"
+  /weapons:
+    post:
+      tags:
+      - "weapons"
+      summary: "Create new weapon"
+      operationId: "newWeapon"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Body required weapon object"
+        required: true
+        schema:
+          $ref: '#/definitions/CreateWeapon'
+      responses:
+        200:
+          description: "Successed created weapon"
+        422:
+          description: "Invalid parameter exception"
+        500:
+          description: "Server unexpected error"
+    put:
+      tags:
+      - "weapons"
+      summary: "Update weapon by id in body"
+      operationId: "updateWeapon"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Body required weapon object"
+        required: true
+        schema:
+          $ref: '#/definitions/UpdateWeapon'
+      responses:
+        200:
+          description: "Successed updated weapon"
+        404:
+          description: "Weapon not found"
+        422:
+          description: "Invalid parameter exception"
+        500:
+          description: "Server unexpected error"
+    get:
+      tags:
+      - "weapons"
+      summary: "Get all weapons"
+      operationId: "getWeapons"
+      produces:
+      - "application/json" 
+      responses:
+        200:
+          description: "Succeed operation"
+          schema:
+            type: "array"
+            items:
+              $ref: '#/definitions/WeaponResponse'
+        204:
+          description: "Succeed operation but empty response"
+  /weapons/{id}:
+    get:
+      tags: 
+      - "weapons"
+      summary: "Get weapon by id" 
+      operationId: "getWeaponById"
+      produces: 
+      - "application/json"
+      parameters: 
+      - name: "id"
+        in: "path"
+        description: "ID of weapon to return"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: '#/definitions/WeaponResponse'
+        404:
+          description: "Weapon not found"
+    delete:
+      tags: 
+      - "weapons"
+      summary: "Delete weapon by id" 
+      operationId: "deleteWeaponById"
+      parameters: 
+      - name: "id"
+        in: "path"
+        description: "ID of weapon to delete"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Weapon deleted"
+        404:
+          description: "Weapon not found"
+        500:
+          description: "Unexpected server error"
+  /professions:
+    post:
+      tags:
+      - "profession"
+      summary: "Create new profession"
+      operationId: "newProfession"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Body required profession object"
+        required: true
+        schema:
+          $ref: '#/definitions/CreateProfession'
+      responses:
+        200:
+          description: "Successed created profession"
+        422:
+          description: "Invalid parameter exception"
+        500:
+          description: "Server unexpected error"
+    put:
+      tags:
+      - "profession"
+      summary: "Update profession by id in body"
+      operationId: "updateProfession"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Body required profession object"
+        required: true
+        schema:
+          $ref: '#/definitions/UpdateProfession'
+      responses:
+        200:
+          description: "Successed updated profession"
+        404:
+          description: "Profession not found"
+        422:
+          description: "Invalid parameter exception"
+        500:
+          description: "Server unexpected error"
+    get:
+      tags:
+      - "profession"
+      summary: "Get all profession"
+      operationId: "getProfession"
+      produces:
+      - "application/json" 
+      responses:
+        200:
+          description: "Succeed operation"
+          schema:
+            type: "array"
+            items:
+              $ref: '#/definitions/ProfessionResponse'
+        204:
+          description: "Succeed operation but empty response"
+  /profession/{id}:
+    get:
+      tags: 
+      - "profession"
+      summary: "Get profession by id" 
+      operationId: "getProfessionById"
+      produces: 
+      - "application/json"
+      parameters: 
+      - name: "id"
+        in: "path"
+        description: "ID of profession to return"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: '#/definitions/ProfessionResponse'
+        404:
+          description: "Profession not found"
+    delete:
+      tags: 
+      - "profession"
+      summary: "Delete profession by id" 
+      operationId: "deleteProfessionById"
+      parameters: 
+      - name: "id"
+        in: "path"
+        description: "ID of profession to delete"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Profession deleted"
+        404:
+          description: "Profession not found"
+        500:
+          description: "Unexpected server error"
+  /characters:
+    post:
+      tags:
+      - "characters"
+      summary: "Create new character"
+      operationId: "newCharacter"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Body required character object"
+        required: true
+        schema:
+          $ref: '#/definitions/CreateCharacter'
+      responses:
+        200:
+          description: "Successed created character"
+        422:
+          description: "Invalid parameter exception"
+        500:
+          description: "Server unexpected error"
+    get:
+      tags:
+      - "characters"
+      summary: "Get all characters"
+      operationId: "getCharacters"
+      produces:
+      - "application/json" 
+      responses:
+        200:
+          description: "Succeed operation"
+          schema:
+            type: "array"
+            items:
+              $ref: '#/definitions/CharacterResponse'
+        204:
+          description: "Succeed operation but empty response"
+  /characters/{id}:
+    get:
+      tags: 
+      - "characters"
+      summary: "Get character by id" 
+      operationId: "getCharacterById"
+      produces: 
+      - "application/json"
+      parameters: 
+      - name: "id"
+        in: "path"
+        description: "ID of character to return"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: '#/definitions/CharacterResponse'
+        404:
+          description: "Character not found"
+    patch:
+      tags: ["characters"]
+      summary: "Update character by id" 
+      description: "updateCharacterById"
+      produces: 
+      - "application/json"
+      consumes: 
+      - "application/json"
+      parameters: 
+      - name: "id"
+        in: "path"
+        description: "ID of character to update"
+        required: true
+        type: "string"
+      - name: "JsonPatch"
+        in: "body"
+        required: true
+        schema:
+          $ref: '#/definitions/UpdateCharacter'
+      responses:
+        200:
+          description: "Updated character"
+        404:
+          description: "Character not found"
+        422:
+          description: "Invalid parameters"
+        500:
+          description: "Unexpected server error"
+    delete:
+      tags: 
+      - "characters"
+      summary: "Delete character by id" 
+      operationId: "deleteCharacterById"
+      parameters: 
+      - name: "id"
+        in: "path"
+        description: "ID of character to delete"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Chacracter deleted"
+        404:
+          description: "Chacracter not found"
+        500:
+          description: "Unexpected server error"
+  /roll/trait:
+    post:
+      tags:
+      - "rools"
+      summary: "Find trait value by roll"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Body required trait roll object"
+        required: true
+        schema:
+          $ref: '#/definitions/TraitRoll'
+      responses:
+        200:
+          description: "Successed roll"
+          schema:
+            type: "number"
+            example: 1
+        422:
+          description: "Invalid parameter exception"
+        500:
+          description: "Server unexpected error"
+  /roll/profession:
+    post:
+      tags:
+      - "rools"
+      summary: "Find profession value by roll"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Body required profession roll object"
+        required: true
+        schema:
+          $ref: '#/definitions/ProfessionRoll'
+      responses:
+        200:
+          description: "Successed roll"
+          schema:
+            $ref: '#/definitions/ProfessionResponse'
+        422:
+          description: "Invalid parameter exception"
+        500:
+          description: "Server unexpected error"
+  /roll/abilities:
+    post:
+      tags:
+      - "rools"
+      summary: "Find ability by roll"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Body required ability roll object"
+        required: true
+        schema:
+          $ref: '#/definitions/AbilityRoll'
+      responses:
+        200:
+          description: "Successed roll"
+          schema:
+            $ref: '#/definitions/AbilityResponse'
+        422:
+          description: "Invalid parameter exception"
+        500:
+          description: "Server unexpected error"
+definitions:
+  CreateSkill:
+    type: "object"
+    required: 
+    - name
+    - trait
+    - type
+    properties:
+      name:
+        type: "string"
+      description:
+        type: "string"
+      trait:
+        $ref: '#/definitions/TraitsEnum'
+      type:
+        type: "string"
+        enum: 
+        - BASIC
+        - ADVANCE
+  UpdateSkill:
+    type: "object"
+    required: 
+    - id
+    - description
+    - name
+    - trait
+    - type
+    properties:
+      id: 
+        type: "string"
+      name:
+        type: "string"
+      description:
+        type: "string"
+      trait:
+        $ref: '#/definitions/TraitsEnum'
+      type:
+        type: "string"
+        enum: 
+        - BASIC
+        - ADVANCE
+  SkillResponse:
+    type: "object"
+    properties:
+      id: 
+        type: "string"
+      name:
+        type: "string"
+      description:
+        type: "string"
+      trait:
+        $ref: '#/definitions/TraitsEnum'
+      type:
+        type: "string"
+        enum: 
+        - BASIC
+        - ADVANCE
+  CreateAbility:
+    type: "object"
+    required: 
+    - name
+    - description
+    properties:
+      name:
+        type: "string"
+      description:
+        type: "string"
+  UpdateAbility:
+    type: "object"
+    required: 
+    - id
+    - description
+    - name
+    properties:
+      id: 
+        type: "string"
+      name:
+        type: "string"
+      description:
+        type: "string"
+  AbilityResponse:
+    type: "object"
+    properties:
+      id: 
+        type: "string"
+      name:
+        type: "string"
+      description:
+        type: "string"
+  CreateItem:
+    type: "object"
+    required: 
+    - name
+    properties:
+      name:
+        type: "string"
+      price:
+        type: "number"
+      description:
+        type: "string"
+      availability:
+        type: "string"
+  UpdateItem:
+    type: "object"
+    required: 
+    - id
+    properties:
+      id: 
+        type: "string"
+      name:
+        type: "string"
+      price:
+        type: "number"
+      description:
+        type: "string"
+      availability:
+        type: "string"
+  ItemResponse:
+    type: "object"
+    properties:
+      id: 
+        type: "string"
+      name: 
+        type: "string"
+      price:
+        type: "number"
+      description:
+        type: "string"
+      availability:
+        type: "string"
+  CreateArmor:
+    type: "object"
+    required: 
+    - name
+    - type
+    - protectionAreas
+    - pz
+    properties:
+      name:
+        type: "string"
+      type:
+        $ref: '#/definitions/ArmorType'
+      price:
+        type: "number"
+      protectionAreas:
+        type: "array"
+        items:
+          $ref: '#/definitions/ProtectionArea'
+      pz:
+        type: "integer"
+      description:
+        type: "string"
+      availability:
+        $ref: '#/definitions/Availability'
+  UpdateArmor:
+    type: "object"
+    required: 
+    - id
+    - price
+    - description
+    - availability
+    - name
+    - type
+    - protectionAreas
+    - pz
+    properties:
+      id: 
+        type: "string"
+      name:
+        type: "string"
+      type:
+        $ref: '#/definitions/ArmorType'
+      price:
+        type: "number"
+      protectionAreas:
+        type: "array"
+        items:
+          $ref: '#/definitions/ProtectionArea'
+      pz:
+        type: "integer"
+      description:
+        type: "string"
+      availability:
+        $ref: '#/definitions/Availability'
+  ArmorResponse:
+    type: "object"
+    properties:
+      id: 
+        type: "string"
+      name:
+        type: "string"
+      type:
+        $ref: '#/definitions/ArmorType'
+      price:
+        type: "number"
+      protectionAreas:
+        type: "array"
+        items:
+          $ref: '#/definitions/ProtectionArea'
+      pz:
+        type: "integer"
+      description:
+        type: "string"
+      availability:
+        $ref: '#/definitions/Availability'
+  CreateWeapon:
+    type: "object"
+    required: [name, type, category, power, weaponTraits]
+    properties:
+      name:
+        type: "string"
+      type:
+        $ref: '#/definitions/WeaponType'
+      category:
+        $ref: '#/definitions/WeaponCategory'
+      power:
+        type: "string"
+        example: "S+1"
+      weaponTraits:
+        type: "string"
+      description:
+        type: "string"
+      price:
+        type: "number"
+      weight:
+        type: "integer"
+      availability:
+        $ref: '#/definitions/Availability'
+      range:
+        description: "In meters. Only apply on weapon type: 'ranged'"
+        required: ["WEAPON_TYPE: RANGED"]
+        type: "number"
+      reloadTime:
+        description: "Only apply on weapon type: 'ranged'"
+        required: ["WEAPON_TYPE: RANGED"]
+        type: "number"
+  UpdateWeapon:
+    type: "object"
+    required: [id, name, type, category, power, weaponTraits, description, price, weight, availability, range, reloadTime]
+    properties:
+      id:
+        type: "string"
+      name:
+        type: "string"
+      type:
+        $ref: '#/definitions/WeaponType'
+      category:
+        $ref: '#/definitions/WeaponCategory'
+      power:
+        type: "string"
+        example: "S+1"
+      weaponTraits:
+        type: "string"
+      description:
+        type: "string"
+      price:
+        type: "number"
+      weight:
+        type: "integer"
+      availability:
+        $ref: '#/definitions/Availability'
+      range:
+        description: "In meters. Only apply on weapon type: 'ranged'"
+        required: ["WEAPON_TYPE: RANGED"]
+        type: "number"
+      reloadTime:
+        description: "Only apply on weapon type: 'ranged'"
+        required: ["WEAPON_TYPE: RANGED"]
+        type: "number"
+  WeaponResponse:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      name:
+        type: "string"
+      type:
+        $ref: '#/definitions/WeaponType'
+      category:
+        $ref: '#/definitions/WeaponCategory'
+      power:
+        type: "string"
+        example: "S+1"
+      weaponTraits:
+        type: "string"
+      description:
+        type: "string"
+      price:
+        type: "number"
+      weight:
+        type: "integer"
+      availability:
+        $ref: '#/definitions/Availability'
+      range:
+        description: "In meters. Only apply on weapon type: 'ranged'"
+        required: ["WEAPON_TYPE: RANGED"]
+        type: "number"
+      reloadTime:
+        description: "Only apply on weapon type: 'ranged'"
+        required: ["WEAPON_TYPE: RANGED"]
+        type: "number"
+  CreateProfession:
+    type: "object"
+    required: 
+    - name
+    - skills
+    - abilities
+    - items
+    - weapons
+    - traits
+    properties:
+      name:
+        type: "string"
+      skills:
+        description: "List of skills id"
+        type: "array"
+        items:
+          type: "string"
+      abilities:
+        description: "List of abilities id"
+        type: "array"
+        items:
+          type: "string"
+      items:
+        description: "List of items id"
+        type: "array"
+        items:
+          type: "string"
+      preProfession:
+        description: "List of profession id which will precede it"
+        type: "array"
+        items:
+          type: "string"
+      postProfession:
+        description: "List of profession id which will extend it"
+        type: "array"
+        items:
+          type: "string"
+      traits:
+        type: "array"
+        items:
+          $ref: '#/definitions/ProfessionTrait'
+      description:
+        type: "string"
+  UpdateProfession:
+    type: "object"
+    required: [name, skills, abilities, items, preProfession, postProfession, traits, description]
+    properties:
+      name:
+        type: "string"
+      skills:
+        description: "List of skills id"
+        type: "array"
+        items:
+          type: "string"
+      abilities:
+        description: "List of abilities id"
+        type: "array"
+        items:
+          type: "string"
+      items:
+        description: "List of items id"
+        type: "array"
+        items:
+          type: "string"
+      preProfession:
+        description: "List of profession id which will precede it"
+        type: "array"
+        items:
+          type: "string"
+      postProfession:
+        description: "List of profession id which will extend it"
+        type: "array"
+        items:
+          type: "string"
+      traits:
+        type: "array"
+        items:
+          $ref: '#/definitions/ProfessionTrait'
+      description:
+        type: "string"
+  ProfessionResponse:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      skills:
+        description: "List of skills id"
+        type: "array"
+        items:
+          $ref: '#/definitions/SkillResponse'
+      abilities:
+        description: "List of abilities id"
+        type: "array"
+        items:
+          $ref: '#/definitions/AbilityResponse'
+      items:
+        description: "List of items id"
+        type: "array"
+        items:
+          $ref: '#/definitions/ItemResponse'
+      preProfession:
+        type: "array"
+        items:
+          $ref: '#/definitions/BasicProfessionResponse'
+      postProfession:
+        type: "array"
+        items:
+          $ref: '#/definitions/BasicProfessionResponse'
+      traits:
+        type: "array"
+        items:
+          $ref: '#/definitions/ProfessionTrait'
+      description:
+        type: "string"
+  CreateCharacter:
+    type: "object"
+    required: [name, raceId, professionId, age, sex, traitsId, skillsId, abilitiesId]
+    properties:
+      name:
+        type: "string"
+      raceId:
+        type: "string"
+      professionId:
+        type: "string"
+      age:
+        type: "number"
+      sex:
+        type: "string"
+        enum: [MALE, FEMALE, OTHER]
+      traitsId:
+        type: "array"
+        items:
+          type: "string"
+      skillsId:
+        type: "array"
+        items:
+          type: "string"
+      abilitiesId:
+        type: "array"
+        items:
+          type: "string"
+      preProfessionId:
+        type: "string"
+      eyeColor:
+        type: "string"
+      weight:
+        type: "number"
+      hairColor:
+        type: "string"
+      height:
+        type: "string"
+      star: 
+        type: "string"
+      experience:
+        type: "number"
+      activeExperience:
+        type: "number"
+      armorsId:
+        type: "array"
+        items:
+          type: "string"
+      weaponsId:
+        type: "array"
+        items:
+          type: "string"
+      ItemsId:
+        type: "array"
+        items:
+          type: "string"
+      money:
+        type: "number"
+  UpdateCharacter:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      raceId:
+        type: "string"
+      professionId:
+        type: "string"
+      age:
+        type: "number"
+      sex:
+        type: "string"
+        enum: [MALE, FEMALE, OTHER]
+      traitsId:
+        type: "array"
+        items:
+          type: "string"
+      skillsId:
+        type: "array"
+        items:
+          type: "string"
+      abilitiesId:
+        type: "array"
+        items:
+          type: "string"
+      preProfessionId:
+        type: "string"
+      eyeColor:
+        type: "string"
+      weight:
+        type: "number"
+      hairColor:
+        type: "string"
+      height:
+        type: "string"
+      star: 
+        type: "string"
+      experience:
+        type: "number"
+      activeExperience:
+        type: "number"
+      armorsId:
+        type: "array"
+        items:
+          type: "string"
+      weaponsId:
+        type: "array"
+        items:
+          type: "string"
+      ItemsId:
+        type: "array"
+        items:
+          type: "string"
+      money:
+        type: "number"
+  CharacterResponse:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      name:
+        type: "string" #TODO Race should be ref
+      raceId:
+        type: "string"
+      profession:
+        $ref: '#/definitions/ProfessionResponse'
+      age:
+        type: "number"
+      sex:
+        type: "string"
+        enum: [MALE, FEMALE, OTHER]
+      traits:
+        type: "array"
+        items:
+          $ref: '#/definitions/CharacterTrait'
+      skills:
+        type: "array"
+        items:
+          $ref: '#/definitions/SkillResponse'
+      abilities:
+        type: "array"
+        items:
+          $ref: '#/definitions/AbilityResponse'
+      preProfession:
+        $ref: '#/definitions/ProfessionResponse'
+      eyeColor:
+        type: "string"
+      weight:
+        type: "number"
+      hairColor:
+        type: "string"
+      height:
+        type: "string"
+      star: 
+        type: "string"
+      experience:
+        type: "number"
+      activeExperience:
+        type: "number"
+      armors:
+        type: "array"
+        items:
+          $ref: '#/definitions/ArmorResponse'
+      armorPoints:
+        $ref: '#/definitions/ArmorPoints'
+      weapons:
+        type: "array"
+        items:
+          $ref: '#/definitions/WeaponResponse'
+      Items:
+        type: "array"
+        items:
+          $ref: '#/definitions/ItemResponse'
+      money:
+        type: "number"
+  TraitRoll:
+    type: "object"
+    required: [name, raceId, roll]
+    properties:
+      abilityId:
+        $ref: '#/definitions/TraitsEnum'
+      raceId:
+        type: "string"
+      roll:
+        type: "number"
+        maximum: 20
+  AbilityRoll:
+    type: "object"
+    required: [raceId, roll]
+    properties:
+      raceId:
+        type: "string"
+      roll:
+        type: "number"
+        maximum: 100
+  ProfessionRoll:
+    type: "object"
+    required: [raceId, roll]
+    properties:
+      raceId:
+        type: "string"
+      roll:
+        type: "number"
+        maximum: 100
+  TraitsEnum:
+    type: string
+    description: "Value 'other' should be only used in to operate with skills."
+    enum: 
+      - WW
+      - US
+      - K
+      - ODP
+      - ZR
+      - INT
+      - SW
+      - ODG
+      - A
+      - ZYW
+      - S
+      - WT
+      - SZ
+      - MAG
+      - PO
+      - PP
+      - OTHER
+  ProtectionArea:
+    type: "string"
+    enum: [HEAD, BODY, LEFT_HAND, RIGHT_HAND, LEFT_LEG, RIGHT_LEG]
+  ArmorType:
+    type: "string"
+    enum: [leather, chain, plate, other]
+  ArmorPoints:
+    type: "object"
+    properties:
+      area:
+        $ref: '#/definitions/ProtectionArea'
+      value:
+        type: "number"
+  Availability:
+    type: "string"
+    enum: [rare, little, average, high]
+  WeaponCategory:
+    type: "string"
+    enum: [BASIC, TWO_HANDED, CAVALERY, FLAIL, PARRY, FENCING, IMMOBILISATION, LONG_BOW, FIREARM, CROSSBOW, THROWN, MECHANIC, SLING, OTHER]
+  WeaponType:
+    type: "string"
+    enum: [WHITE, RANGED, AMMO]
+  ProfessionTrait:
+    type: "object"
+    properties:
+      traitName:
+        $ref: '#/definitions/TraitsEnum'
+      traitExtend:
+        type: number
+  CharacterTrait:
+    type: "object"
+    properties:
+      traitName:
+        $ref: '#/definitions/TraitsEnum'
+      baseValue:
+        type: "number"
+      extendValue:
+        type: "number"
+      actualValue:
+        type: "number"
+  BasicProfessionResponse:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      name:
+        type: "string"
