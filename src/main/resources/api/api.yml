@@ -105,7 +105,7 @@ paths:
       parameters: 
       - name: "id"
         in: "path"
-        description: "ID of skill to return"
+        description: "ID of skill mapToDbAbility return"
         required: true
         type: "string"
       responses:
@@ -123,7 +123,7 @@ paths:
       parameters: 
       - name: "id"
         in: "path"
-        description: "ID of skill to return"
+        description: "ID of skill mapToDbAbility return"
         required: true
         type: "string"
       responses:
@@ -195,7 +195,7 @@ paths:
           schema:
             type: "array"
             items:
-              $ref: '#/definitions/AbilityResponse'
+              $ref: '#/definitions/Ability'
         204:
           description: "Succeed operation but empty response"
   /abilities/{id}:
@@ -209,14 +209,14 @@ paths:
       parameters: 
       - name: "id"
         in: "path"
-        description: "ID of ability to return"
+        description: "ID of ability mapToDbAbility return"
         required: true
         type: "string"
       responses:
         200:
           description: "OK"
           schema:
-            $ref: '#/definitions/AbilityResponse'
+            $ref: '#/definitions/Ability'
         404:
           description: "Ability not found"
     delete:
@@ -227,7 +227,7 @@ paths:
       parameters: 
       - name: "id"
         in: "path"
-        description: "ID of ability to return"
+        description: "ID of ability mapToDbAbility return"
         required: true
         type: "string"
       responses:
@@ -313,7 +313,7 @@ paths:
       parameters: 
       - name: "id"
         in: "path"
-        description: "ID of item to return"
+        description: "ID of item mapToDbAbility return"
         required: true
         type: "string"
       responses:
@@ -331,7 +331,7 @@ paths:
       parameters: 
       - name: "id"
         in: "path"
-        description: "ID of item to return"
+        description: "ID of item mapToDbAbility return"
         required: true
         type: "string"
       responses:
@@ -417,7 +417,7 @@ paths:
       parameters: 
       - name: "id"
         in: "path"
-        description: "ID of armor to return"
+        description: "ID of armor mapToDbAbility return"
         required: true
         type: "string"
       responses:
@@ -435,7 +435,7 @@ paths:
       parameters: 
       - name: "id"
         in: "path"
-        description: "ID of armor to delete"
+        description: "ID of armor mapToDbAbility delete"
         required: true
         type: "string"
       responses:
@@ -521,7 +521,7 @@ paths:
       parameters: 
       - name: "id"
         in: "path"
-        description: "ID of weapon to return"
+        description: "ID of weapon mapToDbAbility return"
         required: true
         type: "string"
       responses:
@@ -539,7 +539,7 @@ paths:
       parameters: 
       - name: "id"
         in: "path"
-        description: "ID of weapon to delete"
+        description: "ID of weapon mapToDbAbility delete"
         required: true
         type: "string"
       responses:
@@ -625,7 +625,7 @@ paths:
       parameters: 
       - name: "id"
         in: "path"
-        description: "ID of profession to return"
+        description: "ID of profession mapToDbAbility return"
         required: true
         type: "string"
       responses:
@@ -643,7 +643,7 @@ paths:
       parameters: 
       - name: "id"
         in: "path"
-        description: "ID of profession to delete"
+        description: "ID of profession mapToDbAbility delete"
         required: true
         type: "string"
       responses:
@@ -704,7 +704,7 @@ paths:
       parameters: 
       - name: "id"
         in: "path"
-        description: "ID of character to return"
+        description: "ID of character mapToDbAbility return"
         required: true
         type: "string"
       responses:
@@ -725,7 +725,7 @@ paths:
       parameters: 
       - name: "id"
         in: "path"
-        description: "ID of character to update"
+        description: "ID of character mapToDbAbility update"
         required: true
         type: "string"
       - name: "JsonPatch"
@@ -750,7 +750,7 @@ paths:
       parameters: 
       - name: "id"
         in: "path"
-        description: "ID of character to delete"
+        description: "ID of character mapToDbAbility delete"
         required: true
         type: "string"
       responses:
@@ -831,7 +831,7 @@ paths:
         200:
           description: "Successed roll"
           schema:
-            $ref: '#/definitions/AbilityResponse'
+            $ref: '#/definitions/Ability'
         422:
           description: "Invalid parameter exception"
         500:
@@ -1231,7 +1231,7 @@ definitions:
         description: "List of abilities id"
         type: "array"
         items:
-          $ref: '#/definitions/AbilityResponse'
+          $ref: '#/definitions/Ability'
       items:
         description: "List of items id"
         type: "array"
@@ -1391,7 +1391,7 @@ definitions:
       abilities:
         type: "array"
         items:
-          $ref: '#/definitions/AbilityResponse'
+          $ref: '#/definitions/Ability'
       preProfession:
         $ref: '#/definitions/ProfessionResponse'
       eyeColor:
@@ -1455,7 +1455,7 @@ definitions:
         maximum: 100
   TraitsEnum:
     type: string
-    description: "Value 'other' should be only used in to operate with skills."
+    description: "Value 'other' should be only used in mapToDbAbility operate with skills."
     enum: 
       - WW
       - US
