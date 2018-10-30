@@ -4,7 +4,7 @@ import com.mypieceofcode.rpgapi.application.abilities.dto.AbilityDto
 import com.mypieceofcode.rpgapi.application.abilities.dto.NewAbilityDto
 import com.mypieceofcode.rpgapi.application.abilities.dto.UpdateAbilityDto
 import com.mypieceofcode.rpgapi.domain.abilities.AbilitiesRepository
-import com.mypieceofcode.rpgapi.exceptions.EntityException
+import com.mypieceofcode.rpgapi.exceptions.EntityAlreadyExistsException
 import com.mypieceofcode.rpgapi.exceptions.ErrorCode
 import com.mypieceofcode.rpgapi.exceptions.MissingEntityException
 import org.springframework.stereotype.Service
@@ -26,12 +26,12 @@ class AbilityService(
 
     fun createAbility(dto: NewAbilityDto) {
         val ability = NewAbilityDto.mapToAbility(dto)
-        when (repository.exists(ability.name)) {
+        when (repository.existsByName(ability.name)) {
             true -> {
-                throw MissingEntityException(ErrorCode.ABILITY_ALREADY_EXISTS)
+                throw EntityAlreadyExistsException(ErrorCode.ABILITY_ALREADY_EXISTS)
             }
             else -> {
-                repository.createAbility(ability)
+                repository.create(ability)
             }
         }
     }
@@ -40,7 +40,7 @@ class AbilityService(
         val ability = UpdateAbilityDto.mapToAbility(dto)
         when(repository.existsById(ability.id)){
             true -> {
-                repository.updateAbility(ability)
+                repository.update(ability)
             }
             else -> {
                 throw MissingEntityException(ErrorCode.ABILITY_NOT_FOUND)
@@ -50,7 +50,7 @@ class AbilityService(
 
     fun deleteAbility(id: String){
         when (repository.findById(id).isPresent){
-            true -> repository.delete(id)
+            true -> repository.deleteById(id)
             else -> throw MissingEntityException(ErrorCode.ABILITY_NOT_FOUND)
         }
     }

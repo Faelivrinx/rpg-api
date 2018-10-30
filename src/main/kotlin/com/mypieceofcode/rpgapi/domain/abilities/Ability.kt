@@ -2,6 +2,7 @@ package com.mypieceofcode.rpgapi.domain.abilities
 
 import com.mypieceofcode.rpgapi.domain.DomainObject
 import com.mypieceofcode.rpgapi.exceptions.ErrorCode
+import com.mypieceofcode.rpgapi.exceptions.InvalidEntityException
 import com.mypieceofcode.rpgapi.exceptions.InvalidParameterException
 import org.apache.commons.lang3.StringUtils
 import org.apache.commons.lang3.StringUtils.isBlank
@@ -18,13 +19,13 @@ data class Ability(
 
     override fun validate() {
         if (isBlank(this.name)){
-            throw InvalidParameterException(ErrorCode.ABILITY_EMPTY_NAME)
+            throw InvalidEntityException(ErrorCode.ABILITY_EMPTY_NAME)
         }
         if (isBlank(this.description)){
-            throw InvalidParameterException(ErrorCode.ABILITY_EMPTY_DESCRIPTION)
+            throw InvalidEntityException(ErrorCode.ABILITY_EMPTY_DESCRIPTION)
         }
         if (isBlank(this.id)){
-            throw InvalidParameterException(ErrorCode.ABILITY_EMPTY_ID)
+            throw InvalidEntityException(ErrorCode.ABILITY_EMPTY_ID)
         }
 
     }
