@@ -17,7 +17,7 @@ class AbilitiesRepositoryImpl(
         return repository.existsById(id)
     }
 
-    override fun exists(name: String): Boolean {
+    override fun existsByName(name: String): Boolean {
         return repository.existsByName(name)
     }
 
@@ -36,16 +36,16 @@ class AbilitiesRepositoryImpl(
                 .map { DbAbilities.toAbility(it) }
     }
 
-    override fun createAbility(ability: Ability) {
+    override fun create(ability: Ability) {
         val fromAbility = DbAbilities.fromAbility(ability)
         repository.save(fromAbility)
     }
 
-    override fun updateAbility(ability: Ability) {
+    override fun update(ability: Ability) {
         repository.save(DbAbilities.fromAbility(ability))
     }
 
-    override fun delete(id: String) {
+    override fun deleteById(id: String) {
         repository.deleteById(id)
     }
 

@@ -1,15 +1,16 @@
 package com.mypieceofcode.rpgapi.domain.abilities
 
+import com.mypieceofcode.rpgapi.domain.Repository
 import java.util.*
 
 
-interface AbilitiesRepository {
-    fun findAll(): List<Ability>
-    fun findByName(name: String): Ability?
-    fun findById(id: String): Optional<Ability>
-    fun createAbility(ability: Ability)
-    fun updateAbility(ability: Ability)
-    fun delete(id: String)
-    fun exists(name: String): Boolean
-    fun existsById(id: String): Boolean
+interface AbilitiesRepository : Repository<Ability> {
+    override fun findAll(): List<Ability>
+    override fun findByName(name: String): Ability?
+    override fun findById(id: String): Optional<Ability>
+    override fun create(ability: Ability)
+    override fun update(ability: Ability)
+    override fun deleteById(id: String)
+    override fun existsByName(name: String): Boolean
+    override fun existsById(id: String): Boolean
 }

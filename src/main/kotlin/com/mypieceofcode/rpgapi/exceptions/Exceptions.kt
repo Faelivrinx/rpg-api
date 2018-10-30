@@ -9,9 +9,17 @@ internal class InvalidParameterException(errorCode: ErrorCode)
     : RuntimeException(errorCode.toString())
 
 @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
-internal class EntityException(errorCode: ErrorCode)
+internal class InvalidEntityException(errorCode: ErrorCode)
+    : RuntimeException(errorCode.toString())
+
+@ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+internal class EntityAlreadyExistsException(errorCode: ErrorCode)
     : RuntimeException(errorCode.toString())
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
 internal class MissingEntityException(errorCode: ErrorCode)
     :RuntimeException(errorCode.toString())
+
+@ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+internal class DomainException(errorCode: ErrorCode)
+    : RuntimeException(errorCode.toString())
