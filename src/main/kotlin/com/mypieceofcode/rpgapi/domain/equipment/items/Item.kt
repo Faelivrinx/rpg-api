@@ -1,10 +1,9 @@
-package com.mypieceofcode.rpgapi.domain.items
+package com.mypieceofcode.rpgapi.domain.equipment.items
 
 import com.mypieceofcode.rpgapi.domain.DomainObject
 import com.mypieceofcode.rpgapi.domain.enums.Availability
 import com.mypieceofcode.rpgapi.exceptions.ErrorCode
 import com.mypieceofcode.rpgapi.exceptions.InvalidEntityException
-import com.mypieceofcode.rpgapi.infrastructure.persistence.DbItem
 import org.apache.commons.lang3.StringUtils.isBlank
 
 data class Item(

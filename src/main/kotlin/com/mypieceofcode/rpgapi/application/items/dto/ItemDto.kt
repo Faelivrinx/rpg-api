@@ -1,7 +1,6 @@
 package com.mypieceofcode.rpgapi.application.items.dto
 
-import com.mypieceofcode.rpgapi.domain.enums.Availability
-import com.mypieceofcode.rpgapi.domain.items.Item
+import com.mypieceofcode.rpgapi.domain.equipment.items.Item
 import com.mypieceofcode.rpgapi.exceptions.ErrorCode
 import com.mypieceofcode.rpgapi.exceptions.InvalidEntityException
 

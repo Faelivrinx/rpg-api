@@ -2,7 +2,7 @@ package com.mypieceofcode.rpgapi.infrastructure.abilities
 
 import com.mypieceofcode.rpgapi.domain.abilities.AbilitiesRepository
 import com.mypieceofcode.rpgapi.domain.abilities.Ability
-import com.mypieceofcode.rpgapi.infrastructure.persistence.DbAbilities
+import com.mypieceofcode.rpgapi.infrastructure.persistence.DbAbility
 import org.springframework.data.mongodb.repository.MongoRepository
 import org.springframework.stereotype.Component
 import org.springframework.stereotype.Repository
@@ -23,26 +23,26 @@ class AbilitiesRepositoryImpl(
 
     override fun findAll(): List<Ability> {
         val dbAbilities = repository.findAll()
-        return dbAbilities.map { DbAbilities.toAbility(it) }
+        return dbAbilities.map { DbAbility.toAbility(it) }
     }
 
     override fun findByName(name: String): Ability? {
         val dbAbility = repository.findByName(name)
-        return dbAbility?.let { DbAbilities.toAbility(it) }
+        return dbAbility?.let { DbAbility.toAbility(it) }
     }
 
     override fun findById(id: String): Optional<Ability> {
         return repository.findById(id)
-                .map { DbAbilities.toAbility(it) }
+                .map { DbAbility.toAbility(it) }
     }
 
     override fun create(ability: Ability) {
-        val fromAbility = DbAbilities.fromAbility(ability)
+        val fromAbility = DbAbility.fromAbility(ability)
         repository.save(fromAbility)
     }
 
     override fun update(ability: Ability) {
-        repository.save(DbAbilities.fromAbility(ability))
+        repository.save(DbAbility.fromAbility(ability))
     }
 
     override fun deleteById(id: String) {
@@ -52,8 +52,8 @@ class AbilitiesRepositoryImpl(
 }
 
 @Repository
-interface DbAbilitiesRepository : MongoRepository<DbAbilities, String> {
+interface DbAbilitiesRepository : MongoRepository<DbAbility, String> {
 
-    fun findByName(name: String): DbAbilities?
+    fun findByName(name: String): DbAbility?
     fun existsByName(name: String): Boolean
 }

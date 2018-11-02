@@ -1,8 +1,7 @@
-package com.mypieceofcode.rpgapi.infrastructure.skill
+package com.mypieceofcode.rpgapi.infrastructure.skills
 
 import com.mypieceofcode.rpgapi.domain.skills.Skill
 import com.mypieceofcode.rpgapi.domain.skills.SkillRepository
-import com.mypieceofcode.rpgapi.infrastructure.persistence.DbAbilities
 import com.mypieceofcode.rpgapi.infrastructure.persistence.DbSkills
 import org.springframework.data.mongodb.repository.MongoRepository
 import org.springframework.stereotype.Component
