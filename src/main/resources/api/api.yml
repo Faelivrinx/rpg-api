@@ -929,6 +929,7 @@ definitions:
     type: "object"
     required:
     - name
+    - description
     properties:
       name:
         type: "string"
@@ -940,8 +941,7 @@ definitions:
         $ref: '#/definitions/Availability'
   UpdateItem:
     type: "object"
-    required:
-    - id
+    required: [id, name, price, description, availability]
     properties:
       id:
         type: "string"
@@ -988,6 +988,10 @@ definitions:
         type: "integer"
       description:
         type: "string"
+      weight:
+        type: "number"
+      url:
+        type: "string"
       availability:
         $ref: '#/definitions/Availability'
   UpdateArmor:
@@ -999,6 +1003,8 @@ definitions:
     - availability
     - name
     - type
+    - weight
+    - url
     - protectionAreas
     - pz
     properties:
@@ -1017,6 +1023,10 @@ definitions:
       pz:
         type: "integer"
       description:
+        type: "string"
+      weight:
+        type: "number"
+      url:
         type: "string"
       availability:
         $ref: '#/definitions/Availability'
@@ -1038,6 +1048,10 @@ definitions:
       pz:
         type: "integer"
       description:
+        type: "string"
+      weight:
+        type: "number"
+      url:
         type: "string"
       availability:
         $ref: '#/definitions/Availability'
@@ -1402,7 +1416,7 @@ definitions:
         type: "string"
       height:
         type: "string"
-      star: 
+      star:
         type: "string"
       experience:
         type: "number"
@@ -1456,7 +1470,7 @@ definitions:
   TraitsEnum:
     type: string
     description: "Value 'other' should be only used in mapToDbAbility operate with skills."
-    enum: 
+    enum:
       - WW
       - US
       - K
@@ -1479,7 +1493,7 @@ definitions:
     enum: [HEAD, BODY, LEFT_HAND, RIGHT_HAND, LEFT_LEG, RIGHT_LEG]
   ArmorType:
     type: "string"
-    enum: [LEATHER, CHAIN, PLATER, OTHER]
+    enum: [leather, chain, plate, other]
   ArmorPoints:
     type: "object"
     properties:
@@ -1489,7 +1503,7 @@ definitions:
         type: "number"
   Availability:
     type: "string"
-    enum: [RARE, LITTLE, AVERAGE, HIGH]
+    enum: [rare, little, average, high]
   WeaponCategory:
     type: "string"
     enum: [BASIC, TWO_HANDED, CAVALERY, FLAIL, PARRY, FENCING, IMMOBILISATION, LONG_BOW, FIREARM, CROSSBOW, THROWN, MECHANIC, SLING, OTHER]
