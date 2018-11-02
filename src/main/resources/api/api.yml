@@ -33,7 +33,7 @@ paths:
     post:
       tags:
       - "skills"
-      summary: "Create new skill"
+      summary: "Create new skills"
       operationId: "newSkill"
       consumes:
       - "application/json"
@@ -42,13 +42,13 @@ paths:
       parameters:
       - in: "body"
         name: "body"
-        description: "Body required skill object"
+        description: "Body required skills object"
         required: true
         schema:
           $ref: '#/definitions/CreateSkill'
       responses:
         200:
-          description: "Successed created skill"
+          description: "Successed created skills"
         422:
           description: "Invalid parameter exception"
         500:
@@ -56,7 +56,7 @@ paths:
     put:
       tags:
       - "skills"
-      summary: "Update skill by id in body"
+      summary: "Update skills by id in body"
       operationId: "updateSkill"
       consumes:
       - "application/json"
@@ -65,13 +65,13 @@ paths:
       parameters:
       - in: "body"
         name: "body"
-        description: "Body required skill object"
+        description: "Body required skills object"
         required: true
         schema:
           $ref: '#/definitions/UpdateSkill'
       responses:
         200:
-          description: "Successed updated skill"
+          description: "Successed updated skills"
         404:
           description: "Skill not found"
         422:
@@ -98,14 +98,14 @@ paths:
     get:
       tags: 
       - skills
-      summary: "Get skill by id" 
+      summary: "Get skills by id"
       operationId: "getSkillById"
       produces: 
       - "application/json"
       parameters: 
       - name: "id"
         in: "path"
-        description: "ID of skill mapToDbAbility return"
+        description: "ID of skills mapToDbAbility return"
         required: true
         type: "string"
       responses:
@@ -118,12 +118,12 @@ paths:
     delete:
       tags: 
       - skills
-      summary: "Delete skill by id" 
+      summary: "Delete skills by id"
       operationId: "deleteSkillById"
       parameters: 
       - name: "id"
         in: "path"
-        description: "ID of skill mapToDbAbility return"
+        description: "ID of skills mapToDbAbility return"
         required: true
         type: "string"
       responses:

@@ -6,15 +6,15 @@ import org.springframework.data.mongodb.core.index.Indexed
 import org.springframework.data.mongodb.core.mapping.Document
 
 @Document(collection = "ability")
-data class DbAbilities(
+data class DbAbility(
         @Indexed val name: String,
         val description: String,
         @Id val id: String
 ) {
 
     companion object {
-        fun toAbility(db: DbAbilities) = Ability(db.name, db.description, db.id)
-        fun fromAbility(ability: Ability) = DbAbilities(ability.name, ability.description, ability.id)
+        fun toAbility(db: DbAbility) = Ability(db.name, db.description, db.id)
+        fun fromAbility(ability: Ability) = DbAbility(ability.name, ability.description, ability.id)
     }
 
 }

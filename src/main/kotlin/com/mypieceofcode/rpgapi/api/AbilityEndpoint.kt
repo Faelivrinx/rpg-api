@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping(value = ["/abilities"])
-class AbilitiesEndpoint{
+class AbilityEndpoint{
 
     @Autowired lateinit var service: AbilityService
 

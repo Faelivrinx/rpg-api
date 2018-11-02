@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping(value = ["/skills"])
-class SkillsEndpoint(
+class SkillEndpoint(
         val service: SkillService
 ) {
 
