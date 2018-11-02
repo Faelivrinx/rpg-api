@@ -1,7 +1,7 @@
-package com.mypieceofcode.rpgapi.infrastructure.abilities
+package com.mypieceofcode.rpgapi.infrastructure.items
 
-import com.mypieceofcode.rpgapi.domain.items.Item
-import com.mypieceofcode.rpgapi.domain.items.ItemRepository
+import com.mypieceofcode.rpgapi.domain.equipment.items.Item
+import com.mypieceofcode.rpgapi.domain.equipment.items.ItemRepository
 import com.mypieceofcode.rpgapi.infrastructure.persistence.DbItem
 import org.springframework.data.mongodb.repository.MongoRepository
 import org.springframework.stereotype.Component

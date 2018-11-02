@@ -1479,7 +1479,7 @@ definitions:
     enum: [HEAD, BODY, LEFT_HAND, RIGHT_HAND, LEFT_LEG, RIGHT_LEG]
   ArmorType:
     type: "string"
-    enum: [leather, chain, plate, other]
+    enum: [LEATHER, CHAIN, PLATER, OTHER]
   ArmorPoints:
     type: "object"
     properties:
@@ -1489,7 +1489,7 @@ definitions:
         type: "number"
   Availability:
     type: "string"
-    enum: [rare, little, average, high]
+    enum: [RARE, LITTLE, AVERAGE, HIGH]
   WeaponCategory:
     type: "string"
     enum: [BASIC, TWO_HANDED, CAVALERY, FLAIL, PARRY, FENCING, IMMOBILISATION, LONG_BOW, FIREARM, CROSSBOW, THROWN, MECHANIC, SLING, OTHER]

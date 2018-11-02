@@ -1,4 +1,4 @@
-package com.mypieceofcode.rpgapi.domain.items
+package com.mypieceofcode.rpgapi.domain.equipment.items
 
 import com.mypieceofcode.rpgapi.domain.Repository
 

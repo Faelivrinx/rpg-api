@@ -3,7 +3,7 @@ package com.mypieceofcode.rpgapi.application.items
 import com.mypieceofcode.rpgapi.application.items.dto.ItemDto
 import com.mypieceofcode.rpgapi.application.items.dto.NewItemDto
 import com.mypieceofcode.rpgapi.application.items.dto.UpdateItemDto
-import com.mypieceofcode.rpgapi.domain.items.ItemRepository
+import com.mypieceofcode.rpgapi.domain.equipment.items.ItemRepository
 import com.mypieceofcode.rpgapi.exceptions.EntityAlreadyExistsException
 import com.mypieceofcode.rpgapi.exceptions.ErrorCode
 import com.mypieceofcode.rpgapi.exceptions.MissingEntityException
@@ -37,11 +37,7 @@ class ItemService(
     fun updateItem(dto: UpdateItemDto) {
         val skill = repository.findById(dto.id)
         if (skill.isPresent) {
-            if (!repository.existsByName(dto.name)) {
                 repository.update(UpdateItemDto.toItem(dto))
-            } else {
-                throw EntityAlreadyExistsException(ErrorCode.ITEM_ALREADY_EXISTS)
-            }
         } else {
             throw MissingEntityException(ErrorCode.ITEM_NOT_FOUND)
         }

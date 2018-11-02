@@ -2,7 +2,7 @@ package com.mypieceofcode.rpgapi.application.items.dto
 
 import com.mypieceofcode.rpgapi.domain.enums.Availability
 import com.mypieceofcode.rpgapi.domain.enums.Availability.Companion.createAvailability
-import com.mypieceofcode.rpgapi.domain.items.Item
+import com.mypieceofcode.rpgapi.domain.equipment.items.Item
 
 data class NewItemDto(
         val name: String,
