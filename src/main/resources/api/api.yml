@@ -33,7 +33,7 @@ paths:
     post:
       tags:
       - "skills"
-      summary: "Create new skills"
+      summary: "Create new skill"
       operationId: "newSkill"
       consumes:
       - "application/json"
@@ -42,13 +42,13 @@ paths:
       parameters:
       - in: "body"
         name: "body"
-        description: "Body required skills object"
+        description: "Body required skill object"
         required: true
         schema:
           $ref: '#/definitions/CreateSkill'
       responses:
         200:
-          description: "Successed created skills"
+          description: "Successed created skill"
         422:
           description: "Invalid parameter exception"
         500:
@@ -56,7 +56,7 @@ paths:
     put:
       tags:
       - "skills"
-      summary: "Update skills by id in body"
+      summary: "Update skill by id in body"
       operationId: "updateSkill"
       consumes:
       - "application/json"
@@ -65,13 +65,13 @@ paths:
       parameters:
       - in: "body"
         name: "body"
-        description: "Body required skills object"
+        description: "Body required skill object"
         required: true
         schema:
           $ref: '#/definitions/UpdateSkill'
       responses:
         200:
-          description: "Successed updated skills"
+          description: "Successed updated skill"
         404:
           description: "Skill not found"
         422:
@@ -84,7 +84,7 @@ paths:
       summary: "Get all skills"
       operationId: "getSkills"
       produces:
-      - "application/json" 
+      - "application/json"
       responses:
         200:
           description: "Succeed operation"
@@ -96,16 +96,16 @@ paths:
           description: "Succeed operation but empty response"
   /skills/{id}:
     get:
-      tags: 
+      tags:
       - skills
-      summary: "Get skills by id"
+      summary: "Get skill by id"
       operationId: "getSkillById"
-      produces: 
+      produces:
       - "application/json"
-      parameters: 
+      parameters:
       - name: "id"
         in: "path"
-        description: "ID of skills mapToDbAbility return"
+        description: "ID of skill mapToDbAbility return"
         required: true
         type: "string"
       responses:
@@ -116,14 +116,14 @@ paths:
         404:
           description: "Skill not found"
     delete:
-      tags: 
+      tags:
       - skills
-      summary: "Delete skills by id"
+      summary: "Delete skill by id"
       operationId: "deleteSkillById"
-      parameters: 
+      parameters:
       - name: "id"
         in: "path"
-        description: "ID of skills mapToDbAbility return"
+        description: "ID of skill mapToDbAbility return"
         required: true
         type: "string"
       responses:
@@ -1069,7 +1069,9 @@ definitions:
         type: "string"
         example: "S+1"
       weaponTraits:
-        type: "string"
+        type: "array"
+        items:
+          type: "string"
       description:
         type: "string"
       price:
@@ -1085,7 +1087,7 @@ definitions:
       reloadTime:
         description: "Only apply on weapon type: 'ranged'"
         required: ["WEAPON_TYPE: RANGED"]
-        type: "number"
+        type: "string"
   UpdateWeapon:
     type: "object"
     required: [id, name, type, category, power, weaponTraits, description, price, weight, availability, range, reloadTime]
@@ -1102,7 +1104,9 @@ definitions:
         type: "string"
         example: "S+1"
       weaponTraits:
-        type: "string"
+        type: "array"
+        items:
+          type: "string"
       description:
         type: "string"
       price:
@@ -1114,7 +1118,7 @@ definitions:
       range:
         description: "In meters. Only apply on weapon type: 'ranged'"
         required: ["WEAPON_TYPE: RANGED"]
-        type: "number"
+        type: "string"
       reloadTime:
         description: "Only apply on weapon type: 'ranged'"
         required: ["WEAPON_TYPE: RANGED"]
@@ -1134,7 +1138,9 @@ definitions:
         type: "string"
         example: "S+1"
       weaponTraits:
-        type: "string"
+        type: "array"
+        items:
+          type: "string"
       description:
         type: "string"
       price:
@@ -1150,7 +1156,7 @@ definitions:
       reloadTime:
         description: "Only apply on weapon type: 'ranged'"
         required: ["WEAPON_TYPE: RANGED"]
-        type: "number"
+        type: "string"
   CreateProfession:
     type: "object"
     required:
@@ -1509,7 +1515,7 @@ definitions:
     enum: [BASIC, TWO_HANDED, CAVALERY, FLAIL, PARRY, FENCING, IMMOBILISATION, LONG_BOW, FIREARM, CROSSBOW, THROWN, MECHANIC, SLING, OTHER]
   WeaponType:
     type: "string"
-    enum: [WHITE, RANGED, AMMO]
+    enum: [WHITE, RANGED, AMMO, OTHER]
   ProfessionTrait:
     type: "object"
     properties:
