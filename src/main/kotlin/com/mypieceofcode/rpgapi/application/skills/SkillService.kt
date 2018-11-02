@@ -37,7 +37,11 @@ class SkillService(
     fun updateSkill(dto: UpdateSkillDto) {
         val skill = repository.findById(dto.id)
         if (skill.isPresent) {
-            repository.update(UpdateSkillDto.mapToSkill(dto))
+            if (!repository.existsByName(dto.name)) {
+                repository.update(UpdateSkillDto.mapToSkill(dto))
+            } else {
+                throw EntityAlreadyExistsException(ErrorCode.ITEM_ALREADY_EXISTS)
+            }
         } else {
             throw MissingEntityException(ErrorCode.SKILL_NOT_FOUND)
         }

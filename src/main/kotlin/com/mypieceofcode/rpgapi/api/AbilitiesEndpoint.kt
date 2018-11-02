@@ -3,7 +3,6 @@ package com.mypieceofcode.rpgapi.api
 import com.mypieceofcode.rpgapi.application.abilities.AbilityService
 import com.mypieceofcode.rpgapi.application.abilities.dto.NewAbilityDto
 import com.mypieceofcode.rpgapi.application.abilities.dto.UpdateAbilityDto
-import com.mypieceofcode.rpgapi.domain.abilities.AbilitiesRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus.OK
 import org.springframework.web.bind.annotation.*
