@@ -937,7 +937,7 @@ definitions:
       description:
         type: "string"
       availability:
-        type: "string"
+        $ref: '#/definitions/Availability'
   UpdateItem:
     type: "object"
     required:
@@ -952,7 +952,7 @@ definitions:
       description:
         type: "string"
       availability:
-        type: "string"
+        $ref: '#/definitions/Availability'
   ItemResponse:
     type: "object"
     properties:
@@ -965,7 +965,7 @@ definitions:
       description:
         type: "string"
       availability:
-        type: "string"
+        $ref: '#/definitions/Availability'
   CreateArmor:
     type: "object"
     required:

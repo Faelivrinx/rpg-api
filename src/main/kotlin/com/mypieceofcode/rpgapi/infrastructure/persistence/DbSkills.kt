@@ -6,7 +6,7 @@ import com.mypieceofcode.rpgapi.domain.skills.Skill
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 
-@Document
+@Document(collection = "skill")
 data class DbSkills(
         val name: String,
         val description: String,

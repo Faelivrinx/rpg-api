@@ -4,7 +4,6 @@ import com.mypieceofcode.rpgapi.application.skills.SkillService
 import com.mypieceofcode.rpgapi.application.skills.dto.NewSkillDto
 import com.mypieceofcode.rpgapi.application.skills.dto.SkillDto
 import com.mypieceofcode.rpgapi.application.skills.dto.UpdateSkillDto
-import com.mypieceofcode.rpgapi.domain.skills.SkillRepository
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
