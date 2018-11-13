@@ -24,7 +24,7 @@ data class ProfessionRepositoryImpl(
     }
 
     override fun findByName(name: String): Profession? {
-        val profession = professionRepository.existsByName(name)  ?: throw MissingEntityException(ErrorCode.PROFESSION_NOT_FOUND)
+        val profession = professionRepository.findByName(name) ?: throw MissingEntityException(ErrorCode.PROFESSION_NOT_FOUND)
         return DbProfession.toProfession(profession)
     }
 
@@ -80,7 +80,7 @@ data class ProfessionRepositoryImpl(
     }
 
     override fun existsByName(name: String): Boolean {
-        TODO()
+        return professionRepository.existsByName(name)
     }
 
     override fun existsById(id: String): Boolean {
@@ -90,5 +90,6 @@ data class ProfessionRepositoryImpl(
 
 @Repository
 interface DbProfessionRepository : MongoRepository<DbProfession, String> {
-    fun existsByName(name: String): DbProfession?
+    fun existsByName(name: String): Boolean
+    fun findByName(name: String): DbProfession?
 }

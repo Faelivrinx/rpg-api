@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.DBRef
 import org.springframework.data.mongodb.core.mapping.Document
 import java.security.InvalidParameterException
 
-@Document(collection = "profession")
+@Document(collection = "professions")
 data class DbProfession(
 
         val name: String,
@@ -52,9 +52,9 @@ data class DbProfession(
                     db.url,
                     db.id)
 
-                fun toBasicProfession(db: DbProfession) : BasicProfession {
+                private fun toBasicProfession(db: DbProfession) : BasicProfession {
                         if (db.id != null){
-                                BasicProfession(db.name, db.id)
+                               return  BasicProfession(db.name, db.id)
                         }
                         throw com.mypieceofcode.rpgapi.exceptions.InvalidParameterException(ErrorCode.PROFESSION_EMPTY_ID)
                 }

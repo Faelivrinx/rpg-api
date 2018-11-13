@@ -8,8 +8,8 @@ info:
 host: "localhost"
 basePath: "/"
 tags:
-- name: "profession"
-  description: "Everything about profession"
+- name: "professions"
+  description: "Everything about professions"
 - name: "skills"
   description: "Everything about skills"
 - name: "abilities"
@@ -20,8 +20,8 @@ tags:
   description: "everything about weapons"
 - name: "armors"
   description: "everything about armors"
-- name: "profession"
-  description: "everything about profession"
+- name: "professions"
+  description: "everything about professions"
 - name: "characters"
   description: "everything about characters"
 - name: "rools"
@@ -552,8 +552,8 @@ paths:
   /professions:
     post:
       tags:
-      - "profession"
-      summary: "Create new profession"
+      - "professions"
+      summary: "Create new professions"
       operationId: "newProfession"
       consumes:
       - "application/json"
@@ -562,21 +562,21 @@ paths:
       parameters:
       - in: "body"
         name: "body"
-        description: "Body required profession object"
+        description: "Body required professions object"
         required: true
         schema:
           $ref: '#/definitions/CreateProfession'
       responses:
         200:
-          description: "Successed created profession"
+          description: "Successed created professions"
         422:
           description: "Invalid parameter exception"
         500:
           description: "Server unexpected error"
     put:
       tags:
-      - "profession"
-      summary: "Update profession by id in body"
+      - "professions"
+      summary: "Update professions by id in body"
       operationId: "updateProfession"
       consumes:
       - "application/json"
@@ -585,13 +585,13 @@ paths:
       parameters:
       - in: "body"
         name: "body"
-        description: "Body required profession object"
+        description: "Body required professions object"
         required: true
         schema:
           $ref: '#/definitions/UpdateProfession'
       responses:
         200:
-          description: "Successed updated profession"
+          description: "Successed updated professions"
         404:
           description: "Profession not found"
         422:
@@ -600,8 +600,8 @@ paths:
           description: "Server unexpected error"
     get:
       tags:
-      - "profession"
-      summary: "Get all profession"
+      - "professions"
+      summary: "Get all professions"
       operationId: "getProfession"
       produces:
       - "application/json"
@@ -617,15 +617,15 @@ paths:
   /profession/{id}:
     get:
       tags:
-      - "profession"
-      summary: "Get profession by id"
+      - "professions"
+      summary: "Get professions by id"
       operationId: "getProfessionById"
       produces:
       - "application/json"
       parameters:
       - name: "id"
         in: "path"
-        description: "ID of profession mapToDbAbility return"
+        description: "ID of professions mapToDbAbility return"
         required: true
         type: "string"
       responses:
@@ -637,13 +637,13 @@ paths:
           description: "Profession not found"
     delete:
       tags:
-      - "profession"
-      summary: "Delete profession by id"
+      - "professions"
+      summary: "Delete professions by id"
       operationId: "deleteProfessionById"
       parameters:
       - name: "id"
         in: "path"
-        description: "ID of profession mapToDbAbility delete"
+        description: "ID of professions mapToDbAbility delete"
         required: true
         type: "string"
       responses:
@@ -790,7 +790,7 @@ paths:
     post:
       tags:
       - "rools"
-      summary: "Find profession value by roll"
+      summary: "Find professions value by roll"
       consumes:
       - "application/json"
       produces:
@@ -798,7 +798,7 @@ paths:
       parameters:
       - in: "body"
         name: "body"
-        description: "Body required profession roll object"
+        description: "Body required professions roll object"
         required: true
         schema:
           $ref: '#/definitions/ProfessionRoll'
@@ -1157,11 +1157,6 @@ definitions:
     type: "object"
     required:
     - name
-    - skills
-    - abilities
-    - items
-    - weapons
-    - traits
     properties:
       name:
         type: "string"
@@ -1170,6 +1165,10 @@ definitions:
         type: "array"
         items:
           type: "string"
+      optionalSkills:
+        type: "array"
+        items:
+          $ref: '#/definitions/OptionalSkill'
       abilities:
         description: "List of abilities id"
         type: "array"
@@ -1181,12 +1180,12 @@ definitions:
         items:
           type: "string"
       preProfession:
-        description: "List of profession id which will precede it"
+        description: "List of professions id which will precede it"
         type: "array"
         items:
           type: "string"
       postProfession:
-        description: "List of profession id which will extend it"
+        description: "List of professions id which will extend it"
         type: "array"
         items:
           type: "string"
@@ -1195,10 +1194,12 @@ definitions:
         items:
           $ref: '#/definitions/ProfessionTrait'
       description:
+        type: "string"
+      url:
         type: "string"
   UpdateProfession:
     type: "object"
-    required: [name, skills, abilities, items, preProfession, postProfession, traits, description]
+    required: [name, skills,optionalSkills, abilities, items, preProfession, postProfession, traits, description, url, id]
     properties:
       name:
         type: "string"
@@ -1207,6 +1208,10 @@ definitions:
         type: "array"
         items:
           type: "string"
+      optionalSkills:
+        type: "array"
+        items:
+          $ref: '#/definitions/OptionalSkill'
       abilities:
         description: "List of abilities id"
         type: "array"
@@ -1218,12 +1223,12 @@ definitions:
         items:
           type: "string"
       preProfession:
-        description: "List of profession id which will precede it"
+        description: "List of professions id which will precede it"
         type: "array"
         items:
           type: "string"
       postProfession:
-        description: "List of profession id which will extend it"
+        description: "List of professions id which will extend it"
         type: "array"
         items:
           type: "string"
@@ -1232,6 +1237,10 @@ definitions:
         items:
           $ref: '#/definitions/ProfessionTrait'
       description:
+        type: "string"
+      url:
+        type: "string"
+      id:
         type: "string"
   ProfessionResponse:
     type: "object"
@@ -1243,6 +1252,10 @@ definitions:
         type: "array"
         items:
           $ref: '#/definitions/SkillResponse'
+      optionalSkills:
+        type: "array"
+        items:
+          $ref: '#/definitions/OptionalSkillResponse'
       abilities:
         description: "List of abilities id"
         type: "array"
@@ -1266,6 +1279,8 @@ definitions:
         items:
           $ref: '#/definitions/ProfessionTrait'
       description:
+        type: "string"
+      url:
         type: "string"
   CreateCharacter:
     type: "object"
@@ -1537,3 +1552,17 @@ definitions:
         type: "string"
       name:
         type: "string"
+  OptionalSkill:
+    type: "object"
+    properties:
+      firstId:
+        type: "string"
+      secondId:
+        type: "string"
+  OptionalSkillResponse:
+    type: "object"
+    properties:
+      first:
+        $ref: '#/definitions/SkillResponse'
+      second:
+        $ref: '#/definitions/SkillResponse'
