@@ -1,5 +1,8 @@
 package com.mypieceofcode.rpgapi.infrastructure.persistence
 
+import com.mypieceofcode.rpgapi.domain.enums.Availability
+import com.mypieceofcode.rpgapi.domain.enums.WeaponCategory
+import com.mypieceofcode.rpgapi.domain.enums.WeaponType
 import com.mypieceofcode.rpgapi.domain.equipment.weapons.Weapon
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
@@ -36,5 +39,23 @@ data class DbWeapon(
                 weapon.range,
                 weapon.reloadTime,
                 weapon.id)
+
+
+        fun toWeapon(db: DbWeapon) = Weapon(
+                db.name,
+                WeaponType.createWeaponType(db.type),
+                WeaponCategory.createWeaponCategory(db.category),
+                db.power,
+                db.weaponTraits,
+                db.description,
+                db.price,
+                db.weight,
+                Availability.createAvailability(db.availability),
+                db.url,
+                db.range,
+                db.reloadTime,
+                db.id
+        )
     }
+
 }

@@ -1,11 +1,13 @@
 package com.mypieceofcode.rpgapi.application.professions.dto
 
 import com.mypieceofcode.rpgapi.application.abilities.dto.AbilityDto
+import com.mypieceofcode.rpgapi.application.armors.dto.ArmorDto
 import com.mypieceofcode.rpgapi.application.items.dto.ItemDto
 import com.mypieceofcode.rpgapi.application.professions.dto.response.BasicProfessionResponse
 import com.mypieceofcode.rpgapi.application.professions.dto.response.OptionalSkill
 import com.mypieceofcode.rpgapi.application.professions.dto.response.ProfessionTrait
 import com.mypieceofcode.rpgapi.application.skills.dto.SkillDto
+import com.mypieceofcode.rpgapi.application.weapons.dto.WeaponDto
 import com.mypieceofcode.rpgapi.domain.profession.Profession
 import com.mypieceofcode.rpgapi.exceptions.ErrorCode
 import com.mypieceofcode.rpgapi.exceptions.InvalidParameterException
@@ -20,6 +22,8 @@ data class ProfessionDto(
         val postProfession: List<BasicProfessionResponse>,
         val traits: List<ProfessionTrait>,
         val description: String,
+        val weapons: List<WeaponDto>,
+        val armors: List<ArmorDto>,
         val url: String,
         val id: String
 
@@ -38,6 +42,8 @@ data class ProfessionDto(
                         profession.outProfession.map { BasicProfessionResponse(it.id, it.name) },
                         profession.traits.map { ProfessionTrait(it.name.toString(), it.value) },
                         profession.description,
+                        profession.weapons.map { WeaponDto.fromWeapon(it) },
+                        profession.armors.map { ArmorDto.fromArmor(it) },
                         profession.url,
                         profession.id
                 )

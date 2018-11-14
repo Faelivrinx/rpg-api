@@ -36,13 +36,13 @@ class ProfessionService(
         }
     }
 
-    fun updateWeapon(dto: UpdateWeaponDto) {
-//        val skill = repository.findById(dto.id)
-//        if (skill.isPresent) {
-//            repository.update(factory.createWeapon(dto))
-//        } else {
-//            throw MissingEntityException(ErrorCode.WEAPON_NOT_FOUND)
-//        }
+    fun updateProfession(dto: UpdateWeaponDto) {
+        if (repository.existsById(dto.id)){
+            val profession = factory.createProfession(dto)
+            repository.create(profession)
+        } else {
+            throw MissingEntityException(ErrorCode.PROFESSION_NOT_FOUND)
+        }
     }
 
     fun deleteProfession(id: String) {

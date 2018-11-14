@@ -35,6 +35,12 @@ data class DbProfession(
 
         val traits: MutableList<ProfessionTrait> = mutableListOf(),
 
+        @DBRef
+        val weapons: MutableList<DbWeapon> = mutableListOf(),
+
+        @DBRef
+        val armors: MutableList<DbArmor> = mutableListOf(),
+
         val url: String = "",
 
         val id: String? = null
@@ -43,12 +49,14 @@ data class DbProfession(
         companion object {
             fun toProfession(db: DbProfession) : Profession = Profession(db.name, db.description,
                     db.skills.map { DbSkills.toSkill(it) },
-                    db.optionalSkills.map { OptionalSkill(DbSkills.toSkill(it.first), DbSkills.toSkill(it.second)) },
                     db.abilities.map { DbAbility.toAbility(it) },
+                    db.optionalSkills.map { OptionalSkill(DbSkills.toSkill(it.first), DbSkills.toSkill(it.second)) },
                     db.items.map { DbItem.toItem(it) },
                     db.inProfession.map { toBasicProfession(it) },
                     db.outProfession.map { toBasicProfession(it) },
                     db.traits,
+                    db.weapons.map { DbWeapon.toWeapon(it) },
+                    db.armors.map { DbArmor.toArmor(it) },
                     db.url,
                     db.id)
 
