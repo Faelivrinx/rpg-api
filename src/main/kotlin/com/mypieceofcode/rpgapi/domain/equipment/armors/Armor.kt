@@ -2,7 +2,6 @@ package com.mypieceofcode.rpgapi.domain.equipment.armors
 
 import com.mypieceofcode.rpgapi.domain.DomainObject
 import com.mypieceofcode.rpgapi.domain.enums.ArmorType
-import com.mypieceofcode.rpgapi.domain.enums.Availability
 import com.mypieceofcode.rpgapi.domain.enums.ProtectionArea
 import com.mypieceofcode.rpgapi.exceptions.ErrorCode
 import com.mypieceofcode.rpgapi.exceptions.InvalidEntityException
@@ -15,7 +14,7 @@ data class Armor (
         val pz: Int,
         val price: Float,
         val weight: Float,
-        val availability: Availability,
+        val availability: String,
         val description: String,
         val url: String,
         val id: String? = null

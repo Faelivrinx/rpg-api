@@ -938,7 +938,7 @@ definitions:
       description:
         type: "string"
       availability:
-        $ref: '#/definitions/Availability'
+        type: "string"
   UpdateItem:
     type: "object"
     required: [id, name, price, description, availability]
@@ -952,7 +952,7 @@ definitions:
       description:
         type: "string"
       availability:
-        $ref: '#/definitions/Availability'
+        type: "string"
   ItemResponse:
     type: "object"
     properties:
@@ -965,7 +965,7 @@ definitions:
       description:
         type: "string"
       availability:
-        $ref: '#/definitions/Availability'
+        type: "string"
   CreateArmor:
     type: "object"
     required:
@@ -993,7 +993,7 @@ definitions:
       url:
         type: "string"
       availability:
-        $ref: '#/definitions/Availability'
+        type: "string"
   UpdateArmor:
     type: "object"
     required:
@@ -1029,7 +1029,7 @@ definitions:
       url:
         type: "string"
       availability:
-        $ref: '#/definitions/Availability'
+        type: "string"
   ArmorResponse:
     type: "object"
     properties:
@@ -1054,7 +1054,7 @@ definitions:
       url:
         type: "string"
       availability:
-        $ref: '#/definitions/Availability'
+        type: "string"
   CreateWeapon:
     type: "object"
     required: [name, type, category, power, weaponTraits]
@@ -1079,7 +1079,7 @@ definitions:
       weight:
         type: "integer"
       availability:
-        $ref: '#/definitions/Availability'
+        type: "string"
       range:
         description: "In meters. Only apply on weapon type: 'ranged'"
         required: ["WEAPON_TYPE: RANGED"]
@@ -1112,7 +1112,7 @@ definitions:
       weight:
         type: "integer"
       availability:
-        $ref: '#/definitions/Availability'
+        type: "string"
       range:
         description: "In meters. Only apply on weapon type: 'ranged'"
         required: ["WEAPON_TYPE: RANGED"]
@@ -1144,7 +1144,7 @@ definitions:
       weight:
         type: "integer"
       availability:
-        $ref: '#/definitions/Availability'
+        type: "string"
       range:
         description: "In meters. Only apply on weapon type: 'ranged'"
         required: ["WEAPON_TYPE: RANGED"]
@@ -1155,8 +1155,7 @@ definitions:
         type: "string"
   CreateProfession:
     type: "object"
-    required:
-    - name
+    required: [name, skills, abilities]
     properties:
       name:
         type: "string"
@@ -1518,9 +1517,6 @@ definitions:
         $ref: '#/definitions/ProtectionArea'
       value:
         type: "number"
-  Availability:
-    type: "string"
-    enum: [rare, little, average, high]
   WeaponCategory:
     type: "string"
     enum: [BASIC, TWO_HANDED, CAVALERY, FLAIL, PARRY, FENCING, IMMOBILISATION, LONG_BOW, FIREARM, CROSSBOW, THROWN, MECHANIC, SLING, OTHER]

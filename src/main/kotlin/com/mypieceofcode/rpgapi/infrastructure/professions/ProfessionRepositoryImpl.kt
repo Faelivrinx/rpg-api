@@ -4,10 +4,7 @@ import com.mypieceofcode.rpgapi.domain.profession.Profession
 import com.mypieceofcode.rpgapi.domain.profession.ProfessionRepository
 import com.mypieceofcode.rpgapi.exceptions.ErrorCode
 import com.mypieceofcode.rpgapi.exceptions.MissingEntityException
-import com.mypieceofcode.rpgapi.infrastructure.persistence.DbAbility
-import com.mypieceofcode.rpgapi.infrastructure.persistence.DbItem
-import com.mypieceofcode.rpgapi.infrastructure.persistence.DbProfession
-import com.mypieceofcode.rpgapi.infrastructure.persistence.DbSkills
+import com.mypieceofcode.rpgapi.infrastructure.persistence.*
 import org.springframework.data.mongodb.repository.MongoRepository
 import org.springframework.stereotype.Repository
 import org.springframework.stereotype.Service
@@ -46,6 +43,8 @@ data class ProfessionRepositoryImpl(
                 inProfessions.map { if (it.isPresent) it.get() else throw MissingEntityException(ErrorCode.PROFESSION_IN_NOT_FOUND) }.toCollection(ArrayList()),
                 outProfessions.map { if (it.isPresent) it.get() else throw MissingEntityException(ErrorCode.PROFESSION_OUT_NOT_FOUND) }.toCollection(ArrayList()),
                 obj.traits.toMutableList(),
+                obj.weapons.map { DbWeapon.fromWeapon(it) }.toMutableList(),
+                obj.armors.map { DbArmor.fromArmor(it) }.toMutableList(),
                 obj.url
         )
 
@@ -67,6 +66,8 @@ data class ProfessionRepositoryImpl(
                     inProfessions.map { if (it.isPresent) it.get() else throw MissingEntityException(ErrorCode.PROFESSION_IN_NOT_FOUND) }.toCollection(ArrayList()),
                     outProfessions.map { if (it.isPresent) it.get() else throw MissingEntityException(ErrorCode.PROFESSION_OUT_NOT_FOUND) }.toCollection(ArrayList()),
                     obj.traits.toMutableList(),
+                    obj.weapons.map { DbWeapon.fromWeapon(it) }.toMutableList(),
+                    obj.armors.map { DbArmor.fromArmor(it) }.toMutableList(),
                     obj.url,
                     obj.id
             )

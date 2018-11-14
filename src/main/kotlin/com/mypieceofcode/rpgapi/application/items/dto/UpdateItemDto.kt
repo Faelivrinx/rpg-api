@@ -1,6 +1,5 @@
 package com.mypieceofcode.rpgapi.application.items.dto
 
-import com.mypieceofcode.rpgapi.domain.enums.Availability.Companion.createAvailability
 import com.mypieceofcode.rpgapi.domain.equipment.items.Item
 
 data class UpdateItemDto(
@@ -12,6 +11,6 @@ data class UpdateItemDto(
 ) {
 
     companion object {
-        fun toItem(dto: UpdateItemDto) = Item(dto.name, dto.description, createAvailability(dto.availability), dto.price, dto.id)
+        fun toItem(dto: UpdateItemDto) = Item(dto.name, dto.description, dto.availability, dto.price, dto.id)
     }
 }

@@ -1,7 +1,5 @@
 package com.mypieceofcode.rpgapi.application.weapons.dto
 
-import com.mypieceofcode.rpgapi.domain.enums.Availability
-
 data class NewWeaponDto(
         val name: String,
         val type: String,
@@ -11,7 +9,7 @@ data class NewWeaponDto(
         val description: String = "",
         val price: Float = 0f,
         val weight: Float = 0f,
-        val availability: String = Availability.HIGH.toString(),
+        val availability: String = "HIGH",
         val url: String = "",
         val range: Float = 0f,
         val reloadTime: String = ""

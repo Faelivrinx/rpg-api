@@ -1,6 +1,5 @@
 package com.mypieceofcode.rpgapi.infrastructure.persistence
 
-import com.mypieceofcode.rpgapi.domain.enums.Availability
 import com.mypieceofcode.rpgapi.domain.enums.WeaponCategory
 import com.mypieceofcode.rpgapi.domain.enums.WeaponType
 import com.mypieceofcode.rpgapi.domain.equipment.weapons.Weapon
@@ -50,7 +49,7 @@ data class DbWeapon(
                 db.description,
                 db.price,
                 db.weight,
-                Availability.createAvailability(db.availability),
+                db.availability,
                 db.url,
                 db.range,
                 db.reloadTime,

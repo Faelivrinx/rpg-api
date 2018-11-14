@@ -1,7 +1,6 @@
 package com.mypieceofcode.rpgapi.application.armors.dto
 
 import com.mypieceofcode.rpgapi.domain.enums.ArmorType
-import com.mypieceofcode.rpgapi.domain.enums.Availability.Companion.createAvailability
 import com.mypieceofcode.rpgapi.domain.enums.ProtectionArea.Companion.createArea
 import com.mypieceofcode.rpgapi.domain.equipment.armors.Armor
 
@@ -26,7 +25,7 @@ data class UpdateArmorDto(
                 dto.pz,
                 dto.price,
                 dto.weight,
-                createAvailability(dto.availability),
+                dto.availability,
                 dto.description,
                 dto.url,
                 dto.id
