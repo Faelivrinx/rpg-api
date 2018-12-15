@@ -5,8 +5,8 @@ import com.mypieceofcode.rpgapi.application.professions.dto.response.ProfessionT
 
 data class UpdateProfessionDto(
         val name: String,
-        val skills: List<String>,
-        val abilities: List<String>,
+        val skillsId: List<String>,
+        val abilitiesId: List<String>,
         val optionalSkills: List<NewOptionalSkill>,
         val items: List<String>,
         val preProfession: List<String>,

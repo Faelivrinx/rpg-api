@@ -4,9 +4,9 @@ import com.mypieceofcode.rpgapi.application.professions.dto.request.NewOptionalS
 import com.mypieceofcode.rpgapi.application.professions.dto.response.ProfessionTrait
 
 data class NewProfessionDto(
-        val name: String ,
-        val skills: List<String>,
-        val abilities: List<String>,
+        val name: String,
+        val skillsId: List<String>,
+        val abilitiesId: List<String>,
         val optionalSkills: List<NewOptionalSkill> = emptyList(),
         val items: List<String> = emptyList(),
         val preProfession: List<String> = emptyList(),

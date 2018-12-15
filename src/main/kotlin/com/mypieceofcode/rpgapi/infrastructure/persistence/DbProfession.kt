@@ -3,11 +3,10 @@ package com.mypieceofcode.rpgapi.infrastructure.persistence
 import com.mypieceofcode.rpgapi.domain.profession.BasicProfession
 import com.mypieceofcode.rpgapi.domain.profession.OptionalSkill
 import com.mypieceofcode.rpgapi.domain.profession.Profession
-import com.mypieceofcode.rpgapi.domain.profession.ProfessionTrait
+import com.mypieceofcode.rpgapi.domain.profession.TraitWithValue
 import com.mypieceofcode.rpgapi.exceptions.ErrorCode
 import org.springframework.data.mongodb.core.mapping.DBRef
 import org.springframework.data.mongodb.core.mapping.Document
-import java.security.InvalidParameterException
 
 @Document(collection = "professions")
 data class DbProfession(
@@ -33,7 +32,7 @@ data class DbProfession(
         @DBRef
         val outProfession: MutableList<DbProfession> = mutableListOf(),
 
-        val traits: MutableList<ProfessionTrait> = mutableListOf(),
+        val traits: MutableList<TraitWithValue> = mutableListOf(),
 
         @DBRef
         val weapons: MutableList<DbWeapon> = mutableListOf(),

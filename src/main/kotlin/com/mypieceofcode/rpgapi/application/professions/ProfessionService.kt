@@ -18,7 +18,6 @@ class ProfessionService(
     fun getProfessions(): List<ProfessionDto> = repository.findAll().map { ProfessionDto.fromProfession(it) }
 
     fun createProfession(dto: NewProfessionDto) {
-
         if (repository.existsByName(dto.name)) {
             throw EntityAlreadyExistsException(ErrorCode.PROFESSION_ALREADY_EXISTS)
         } else {

@@ -10,10 +10,10 @@ basePath: "/"
 tags:
 - name: "professions"
   description: "Everything about professions"
-- name: "skills"
-  description: "Everything about skills"
-- name: "abilities"
-  description: "everything about abilities"
+- name: "skillsId"
+  description: "Everything about skillsId"
+- name: "abilitiesId"
+  description: "everything about abilitiesId"
 - name: "items"
   description: "everything about items (not weapons or armors)"
 - name: "weapons"
@@ -32,7 +32,7 @@ paths:
   /skills:
     post:
       tags:
-      - "skills"
+      - "skillsId"
       summary: "Create new skill"
       operationId: "newSkill"
       consumes:
@@ -55,7 +55,7 @@ paths:
           description: "Server unexpected error"
     put:
       tags:
-      - "skills"
+      - "skillsId"
       summary: "Update skill by id in body"
       operationId: "updateSkill"
       consumes:
@@ -80,9 +80,9 @@ paths:
           description: "Server unexpected error"
     get:
       tags:
-      - "skills"
-      summary: "Get all skills"
-      operationId: "getSkills"
+      - "skillsId"
+      summary: "Get all skillsId"
+      operationId: "getSkillsId"
       produces:
       - "application/json"
       responses:
@@ -97,7 +97,7 @@ paths:
   /skills/{id}:
     get:
       tags:
-      - skills
+      - skillsId
       summary: "Get skill by id"
       operationId: "getSkillById"
       produces:
@@ -117,7 +117,7 @@ paths:
           description: "Skill not found"
     delete:
       tags:
-      - skills
+      - skillsId
       summary: "Delete skill by id"
       operationId: "deleteSkillById"
       parameters:
@@ -136,7 +136,7 @@ paths:
   /abilities:
     post:
       tags:
-      - "abilities"
+      - "abilitiesId"
       summary: "Create new ability"
       operationId: "newAbility"
       consumes:
@@ -159,7 +159,7 @@ paths:
           description: "Server unexpected error"
     put:
       tags:
-      - "abilities"
+      - "abilitiesId"
       summary: "Update ability by id in body"
       operationId: "updateAbility"
       consumes:
@@ -184,9 +184,9 @@ paths:
           description: "Server unexpected error"
     get:
       tags:
-      - "abilities"
-      summary: "Get all abilities"
-      operationId: "getAbilities"
+      - "abilitiesId"
+      summary: "Get all abilitiesId"
+      operationId: "getAbilitiesId"
       produces:
       - "application/json"
       responses:
@@ -201,7 +201,7 @@ paths:
   /abilities/{id}:
     get:
       tags:
-      - "abilities"
+      - "abilitiesId"
       summary: "Get ability by id"
       operationId: "getAbilityById"
       produces:
@@ -221,7 +221,7 @@ paths:
           description: "Ability not found"
     delete:
       tags:
-      - "abilities"
+      - "abilitiesId"
       summary: "Delete ability by id"
       operationId: "deleteAbilityById"
       parameters:
@@ -1155,12 +1155,12 @@ definitions:
         type: "string"
   CreateProfession:
     type: "object"
-    required: [name, skills, abilities]
+    required: [name, skillsId, abilitiesId]
     properties:
       name:
         type: "string"
       skills:
-        description: "List of skills id"
+        description: "List of skillsId id"
         type: "array"
         items:
           type: "string"
@@ -1169,7 +1169,7 @@ definitions:
         items:
           $ref: '#/definitions/OptionalSkill'
       abilities:
-        description: "List of abilities id"
+        description: "List of abilitiesId id"
         type: "array"
         items:
           type: "string"
@@ -1191,19 +1191,19 @@ definitions:
       traits:
         type: "array"
         items:
-          $ref: '#/definitions/ProfessionTrait'
+          $ref: '#/definitions/TraitWithValue'
       description:
         type: "string"
       url:
         type: "string"
   UpdateProfession:
     type: "object"
-    required: [name, skills,optionalSkills, abilities, items, preProfession, postProfession, traits, description, url, id]
+    required: [name, skillsId,optionalSkills, abilitiesId, items, preProfession, postProfession, traits, description, url, id]
     properties:
       name:
         type: "string"
       skills:
-        description: "List of skills id"
+        description: "List of skillsId id"
         type: "array"
         items:
           type: "string"
@@ -1212,7 +1212,7 @@ definitions:
         items:
           $ref: '#/definitions/OptionalSkill'
       abilities:
-        description: "List of abilities id"
+        description: "List of abilitiesId id"
         type: "array"
         items:
           type: "string"
@@ -1234,7 +1234,7 @@ definitions:
       traits:
         type: "array"
         items:
-          $ref: '#/definitions/ProfessionTrait'
+          $ref: '#/definitions/TraitWithValue'
       description:
         type: "string"
       url:
@@ -1247,7 +1247,7 @@ definitions:
       name:
         type: "string"
       skills:
-        description: "List of skills id"
+        description: "List of skillsId id"
         type: "array"
         items:
           $ref: '#/definitions/SkillResponse'
@@ -1256,7 +1256,7 @@ definitions:
         items:
           $ref: '#/definitions/OptionalSkillResponse'
       abilities:
-        description: "List of abilities id"
+        description: "List of abilitiesId id"
         type: "array"
         items:
           $ref: '#/definitions/AbilityResponse'
@@ -1276,7 +1276,7 @@ definitions:
       traits:
         type: "array"
         items:
-          $ref: '#/definitions/ProfessionTrait'
+          $ref: '#/definitions/TraitWithValue'
       description:
         type: "string"
       url:
@@ -1485,7 +1485,7 @@ definitions:
         maximum: 100
   TraitsEnum:
     type: string
-    description: "Value 'other' should be only used in mapToDbAbility operate with skills."
+    description: "Value 'other' should be only used in mapToDbAbility operate with skillsId."
     enum:
       - WW
       - US

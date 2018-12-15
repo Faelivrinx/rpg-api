@@ -19,7 +19,7 @@ class Profession(
         val items: List<Item> = emptyList(),
         val inProfession: List<BasicProfession> = emptyList(),
         val outProfession: List<BasicProfession> = emptyList(),
-        val traits: List<ProfessionTrait> = emptyList(),
+        val traits: List<TraitWithValue> = emptyList(),
         val weapons: List<Weapon> = emptyList(),
         val armors: List<Armor> = emptyList(),
         val url: String = "",

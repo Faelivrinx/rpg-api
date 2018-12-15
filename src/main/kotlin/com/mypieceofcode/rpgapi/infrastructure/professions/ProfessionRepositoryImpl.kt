@@ -21,7 +21,8 @@ data class ProfessionRepositoryImpl(
     }
 
     override fun findByName(name: String): Profession? {
-        val profession = professionRepository.findByName(name) ?: throw MissingEntityException(ErrorCode.PROFESSION_NOT_FOUND)
+        val profession = professionRepository.findByName(name)
+                ?: throw MissingEntityException(ErrorCode.PROFESSION_NOT_FOUND)
         return DbProfession.toProfession(profession)
     }
 
@@ -52,7 +53,7 @@ data class ProfessionRepositoryImpl(
     }
 
     override fun update(obj: Profession) {
-        if (obj.id != null && professionRepository.existsById(obj.id)){
+        if (obj.id != null && professionRepository.existsById(obj.id)) {
             val inProfessions = obj.inProfession.map { professionRepository.findById(it.id) }.toCollection(ArrayList())
             val outProfessions = obj.outProfession.map { professionRepository.findById(it.id) }.toCollection(ArrayList())
 
@@ -72,8 +73,10 @@ data class ProfessionRepositoryImpl(
                     obj.id
             )
             professionRepository.save(db)
+
+        } else {
+            throw MissingEntityException(ErrorCode.PROFESSION_NOT_FOUND)
         }
-        throw MissingEntityException(ErrorCode.PROFESSION_NOT_FOUND)
     }
 
     override fun deleteById(id: String) {

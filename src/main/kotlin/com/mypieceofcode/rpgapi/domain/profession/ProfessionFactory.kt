@@ -48,28 +48,28 @@ class ProfessionFactory {
     }
 
     private fun updateProfession(dto: UpdateProfessionDto): Profession {
-        val abilities = getAbilities(dto.abilities)
-        val skills = getSkills(dto.skills)
+        val abilities = getAbilities(dto.abilitiesId)
+        val skills = getSkills(dto.skillsId)
         val optionalSkills = getOptionalSkill(dto.optionalSkills)
         val items = getItems(dto.items)
         val preProfession = getProfession(dto.preProfession)
         val postProfession = getProfession(dto.postProfession)
         val weapons = getWeapons(dto.weapons)
         val armors = getArmors(dto.armors)
-        val traits = dto.traits.map { ProfessionTrait(Trait.createTrait(it.traitName), it.traitExtend) }.toCollection(ArrayList())
+        val traits = dto.traits.map { TraitWithValue(Trait.createTrait(it.traitName), it.traitExtend) }.toCollection(ArrayList())
         return Profession(dto.name, dto.description, skills,abilities, optionalSkills, items, preProfession, postProfession, traits, weapons, armors, dto.url, dto.id)
     }
 
     private fun createNewProfession(dto: NewProfessionDto): Profession {
-        val abilities = getAbilities(dto.abilities)
-        val skills = getSkills(dto.skills)
+        val abilities = getAbilities(dto.abilitiesId)
+        val skills = getSkills(dto.skillsId)
         val optionalSkills = getOptionalSkill(dto.optionalSkills)
         val items = getItems(dto.items)
         val preProfession = getProfession(dto.preProfession)
         val postProfession = getProfession(dto.postProfession)
         val weapons = getWeapons(dto.weapons)
         val armors = getArmors(dto.armors)
-        val traits = dto.traits.map { ProfessionTrait(Trait.createTrait(it.traitName), it.traitExtend) }.toCollection(ArrayList())
+        val traits = dto.traits.map { TraitWithValue(Trait.createTrait(it.traitName), it.traitExtend) }.toCollection(ArrayList())
         return Profession(dto.name, dto.description, skills,abilities, optionalSkills, items, preProfession, postProfession, traits, weapons, armors, dto.url)
     }
 
