@@ -8,20 +8,20 @@ info:
 host: "localhost"
 basePath: "/"
 tags:
-- name: "profession"
-  description: "Everything about profession"
-- name: "skills"
-  description: "Everything about skills"
-- name: "abilities"
-  description: "everything about abilities"
+- name: "professions"
+  description: "Everything about professions"
+- name: "skillsId"
+  description: "Everything about skillsId"
+- name: "abilitiesId"
+  description: "everything about abilitiesId"
 - name: "items"
   description: "everything about items (not weapons or armors)"
 - name: "weapons"
   description: "everything about weapons"
 - name: "armors"
   description: "everything about armors"
-- name: "profession"
-  description: "everything about profession"
+- name: "professions"
+  description: "everything about professions"
 - name: "characters"
   description: "everything about characters"
 - name: "rools"
@@ -32,7 +32,7 @@ paths:
   /skills:
     post:
       tags:
-      - "skills"
+      - "skillsId"
       summary: "Create new skill"
       operationId: "newSkill"
       consumes:
@@ -55,7 +55,7 @@ paths:
           description: "Server unexpected error"
     put:
       tags:
-      - "skills"
+      - "skillsId"
       summary: "Update skill by id in body"
       operationId: "updateSkill"
       consumes:
@@ -80,9 +80,9 @@ paths:
           description: "Server unexpected error"
     get:
       tags:
-      - "skills"
-      summary: "Get all skills"
-      operationId: "getSkills"
+      - "skillsId"
+      summary: "Get all skillsId"
+      operationId: "getSkillsId"
       produces:
       - "application/json"
       responses:
@@ -97,7 +97,7 @@ paths:
   /skills/{id}:
     get:
       tags:
-      - skills
+      - skillsId
       summary: "Get skill by id"
       operationId: "getSkillById"
       produces:
@@ -117,7 +117,7 @@ paths:
           description: "Skill not found"
     delete:
       tags:
-      - skills
+      - skillsId
       summary: "Delete skill by id"
       operationId: "deleteSkillById"
       parameters:
@@ -136,7 +136,7 @@ paths:
   /abilities:
     post:
       tags:
-      - "abilities"
+      - "abilitiesId"
       summary: "Create new ability"
       operationId: "newAbility"
       consumes:
@@ -159,7 +159,7 @@ paths:
           description: "Server unexpected error"
     put:
       tags:
-      - "abilities"
+      - "abilitiesId"
       summary: "Update ability by id in body"
       operationId: "updateAbility"
       consumes:
@@ -184,9 +184,9 @@ paths:
           description: "Server unexpected error"
     get:
       tags:
-      - "abilities"
-      summary: "Get all abilities"
-      operationId: "getAbilities"
+      - "abilitiesId"
+      summary: "Get all abilitiesId"
+      operationId: "getAbilitiesId"
       produces:
       - "application/json"
       responses:
@@ -201,7 +201,7 @@ paths:
   /abilities/{id}:
     get:
       tags:
-      - "abilities"
+      - "abilitiesId"
       summary: "Get ability by id"
       operationId: "getAbilityById"
       produces:
@@ -221,7 +221,7 @@ paths:
           description: "Ability not found"
     delete:
       tags:
-      - "abilities"
+      - "abilitiesId"
       summary: "Delete ability by id"
       operationId: "deleteAbilityById"
       parameters:
@@ -552,8 +552,8 @@ paths:
   /professions:
     post:
       tags:
-      - "profession"
-      summary: "Create new profession"
+      - "professions"
+      summary: "Create new professions"
       operationId: "newProfession"
       consumes:
       - "application/json"
@@ -562,21 +562,21 @@ paths:
       parameters:
       - in: "body"
         name: "body"
-        description: "Body required profession object"
+        description: "Body required professions object"
         required: true
         schema:
           $ref: '#/definitions/CreateProfession'
       responses:
         200:
-          description: "Successed created profession"
+          description: "Successed created professions"
         422:
           description: "Invalid parameter exception"
         500:
           description: "Server unexpected error"
     put:
       tags:
-      - "profession"
-      summary: "Update profession by id in body"
+      - "professions"
+      summary: "Update professions by id in body"
       operationId: "updateProfession"
       consumes:
       - "application/json"
@@ -585,13 +585,13 @@ paths:
       parameters:
       - in: "body"
         name: "body"
-        description: "Body required profession object"
+        description: "Body required professions object"
         required: true
         schema:
           $ref: '#/definitions/UpdateProfession'
       responses:
         200:
-          description: "Successed updated profession"
+          description: "Successed updated professions"
         404:
           description: "Profession not found"
         422:
@@ -600,8 +600,8 @@ paths:
           description: "Server unexpected error"
     get:
       tags:
-      - "profession"
-      summary: "Get all profession"
+      - "professions"
+      summary: "Get all professions"
       operationId: "getProfession"
       produces:
       - "application/json"
@@ -617,15 +617,15 @@ paths:
   /profession/{id}:
     get:
       tags:
-      - "profession"
-      summary: "Get profession by id"
+      - "professions"
+      summary: "Get professions by id"
       operationId: "getProfessionById"
       produces:
       - "application/json"
       parameters:
       - name: "id"
         in: "path"
-        description: "ID of profession mapToDbAbility return"
+        description: "ID of professions mapToDbAbility return"
         required: true
         type: "string"
       responses:
@@ -637,13 +637,13 @@ paths:
           description: "Profession not found"
     delete:
       tags:
-      - "profession"
-      summary: "Delete profession by id"
+      - "professions"
+      summary: "Delete professions by id"
       operationId: "deleteProfessionById"
       parameters:
       - name: "id"
         in: "path"
-        description: "ID of profession mapToDbAbility delete"
+        description: "ID of professions mapToDbAbility delete"
         required: true
         type: "string"
       responses:
@@ -790,7 +790,7 @@ paths:
     post:
       tags:
       - "rools"
-      summary: "Find profession value by roll"
+      summary: "Find professions value by roll"
       consumes:
       - "application/json"
       produces:
@@ -798,7 +798,7 @@ paths:
       parameters:
       - in: "body"
         name: "body"
-        description: "Body required profession roll object"
+        description: "Body required professions roll object"
         required: true
         schema:
           $ref: '#/definitions/ProfessionRoll'
@@ -938,7 +938,7 @@ definitions:
       description:
         type: "string"
       availability:
-        $ref: '#/definitions/Availability'
+        type: "string"
   UpdateItem:
     type: "object"
     required: [id, name, price, description, availability]
@@ -952,7 +952,7 @@ definitions:
       description:
         type: "string"
       availability:
-        $ref: '#/definitions/Availability'
+        type: "string"
   ItemResponse:
     type: "object"
     properties:
@@ -965,7 +965,7 @@ definitions:
       description:
         type: "string"
       availability:
-        $ref: '#/definitions/Availability'
+        type: "string"
   CreateArmor:
     type: "object"
     required:
@@ -993,7 +993,7 @@ definitions:
       url:
         type: "string"
       availability:
-        $ref: '#/definitions/Availability'
+        type: "string"
   UpdateArmor:
     type: "object"
     required:
@@ -1029,7 +1029,7 @@ definitions:
       url:
         type: "string"
       availability:
-        $ref: '#/definitions/Availability'
+        type: "string"
   ArmorResponse:
     type: "object"
     properties:
@@ -1054,7 +1054,7 @@ definitions:
       url:
         type: "string"
       availability:
-        $ref: '#/definitions/Availability'
+        type: "string"
   CreateWeapon:
     type: "object"
     required: [name, type, category, power, weaponTraits]
@@ -1079,7 +1079,7 @@ definitions:
       weight:
         type: "integer"
       availability:
-        $ref: '#/definitions/Availability'
+        type: "string"
       range:
         description: "In meters. Only apply on weapon type: 'ranged'"
         required: ["WEAPON_TYPE: RANGED"]
@@ -1104,9 +1104,7 @@ definitions:
         type: "string"
         example: "S+1"
       weaponTraits:
-        type: "array"
-        items:
-          type: "string"
+        type: "string"
       description:
         type: "string"
       price:
@@ -1114,7 +1112,7 @@ definitions:
       weight:
         type: "integer"
       availability:
-        $ref: '#/definitions/Availability'
+        type: "string"
       range:
         description: "In meters. Only apply on weapon type: 'ranged'"
         required: ["WEAPON_TYPE: RANGED"]
@@ -1138,9 +1136,7 @@ definitions:
         type: "string"
         example: "S+1"
       weaponTraits:
-        type: "array"
-        items:
-          type: "string"
+        type: "string"
       description:
         type: "string"
       price:
@@ -1148,7 +1144,7 @@ definitions:
       weight:
         type: "integer"
       availability:
-        $ref: '#/definitions/Availability'
+        type: "string"
       range:
         description: "In meters. Only apply on weapon type: 'ranged'"
         required: ["WEAPON_TYPE: RANGED"]
@@ -1159,23 +1155,21 @@ definitions:
         type: "string"
   CreateProfession:
     type: "object"
-    required:
-    - name
-    - skills
-    - abilities
-    - items
-    - weapons
-    - traits
+    required: [name, skillsId, abilitiesId]
     properties:
       name:
         type: "string"
       skills:
-        description: "List of skills id"
+        description: "List of skillsId id"
         type: "array"
         items:
           type: "string"
+      optionalSkills:
+        type: "array"
+        items:
+          $ref: '#/definitions/OptionalSkill'
       abilities:
-        description: "List of abilities id"
+        description: "List of abilitiesId id"
         type: "array"
         items:
           type: "string"
@@ -1185,34 +1179,40 @@ definitions:
         items:
           type: "string"
       preProfession:
-        description: "List of profession id which will precede it"
+        description: "List of professions id which will precede it"
         type: "array"
         items:
           type: "string"
       postProfession:
-        description: "List of profession id which will extend it"
+        description: "List of professions id which will extend it"
         type: "array"
         items:
           type: "string"
       traits:
         type: "array"
         items:
-          $ref: '#/definitions/ProfessionTrait'
+          $ref: '#/definitions/TraitWithValue'
       description:
+        type: "string"
+      url:
         type: "string"
   UpdateProfession:
     type: "object"
-    required: [name, skills, abilities, items, preProfession, postProfession, traits, description]
+    required: [name, skillsId,optionalSkills, abilitiesId, items, preProfession, postProfession, traits, description, url, id]
     properties:
       name:
         type: "string"
       skills:
-        description: "List of skills id"
+        description: "List of skillsId id"
         type: "array"
         items:
           type: "string"
+      optionalSkills:
+        type: "array"
+        items:
+          $ref: '#/definitions/OptionalSkill'
       abilities:
-        description: "List of abilities id"
+        description: "List of abilitiesId id"
         type: "array"
         items:
           type: "string"
@@ -1222,20 +1222,24 @@ definitions:
         items:
           type: "string"
       preProfession:
-        description: "List of profession id which will precede it"
+        description: "List of professions id which will precede it"
         type: "array"
         items:
           type: "string"
       postProfession:
-        description: "List of profession id which will extend it"
+        description: "List of professions id which will extend it"
         type: "array"
         items:
           type: "string"
       traits:
         type: "array"
         items:
-          $ref: '#/definitions/ProfessionTrait'
+          $ref: '#/definitions/TraitWithValue'
       description:
+        type: "string"
+      url:
+        type: "string"
+      id:
         type: "string"
   ProfessionResponse:
     type: "object"
@@ -1243,12 +1247,16 @@ definitions:
       name:
         type: "string"
       skills:
-        description: "List of skills id"
+        description: "List of skillsId id"
         type: "array"
         items:
           $ref: '#/definitions/SkillResponse'
+      optionalSkills:
+        type: "array"
+        items:
+          $ref: '#/definitions/OptionalSkillResponse'
       abilities:
-        description: "List of abilities id"
+        description: "List of abilitiesId id"
         type: "array"
         items:
           $ref: '#/definitions/AbilityResponse'
@@ -1268,8 +1276,10 @@ definitions:
       traits:
         type: "array"
         items:
-          $ref: '#/definitions/ProfessionTrait'
+          $ref: '#/definitions/TraitWithValue'
       description:
+        type: "string"
+      url:
         type: "string"
   CreateCharacter:
     type: "object"
@@ -1475,7 +1485,7 @@ definitions:
         maximum: 100
   TraitsEnum:
     type: string
-    description: "Value 'other' should be only used in mapToDbAbility operate with skills."
+    description: "Value 'other' should be only used in mapToDbAbility operate with skillsId."
     enum:
       - WW
       - US
@@ -1507,9 +1517,6 @@ definitions:
         $ref: '#/definitions/ProtectionArea'
       value:
         type: "number"
-  Availability:
-    type: "string"
-    enum: [rare, little, average, high]
   WeaponCategory:
     type: "string"
     enum: [BASIC, TWO_HANDED, CAVALERY, FLAIL, PARRY, FENCING, IMMOBILISATION, LONG_BOW, FIREARM, CROSSBOW, THROWN, MECHANIC, SLING, OTHER]
@@ -1541,3 +1548,17 @@ definitions:
         type: "string"
       name:
         type: "string"
+  OptionalSkill:
+    type: "object"
+    properties:
+      firstId:
+        type: "string"
+      secondId:
+        type: "string"
+  OptionalSkillResponse:
+    type: "object"
+    properties:
+      first:
+        $ref: '#/definitions/SkillResponse'
+      second:
+        $ref: '#/definitions/SkillResponse'

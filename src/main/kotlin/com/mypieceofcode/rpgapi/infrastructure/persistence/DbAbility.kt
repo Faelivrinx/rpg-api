@@ -9,11 +9,11 @@ import org.springframework.data.mongodb.core.mapping.Document
 data class DbAbility(
         @Indexed val name: String,
         val description: String,
-        @Id val id: String
+        @Id val id: String? = null
 ) {
 
     companion object {
-        fun toAbility(db: DbAbility) = Ability(db.name, db.description, db.id)
+        fun toAbility(db: DbAbility) = Ability(db.name, db.description, db.id!!)
         fun fromAbility(ability: Ability) = DbAbility(ability.name, ability.description, ability.id)
     }
 
