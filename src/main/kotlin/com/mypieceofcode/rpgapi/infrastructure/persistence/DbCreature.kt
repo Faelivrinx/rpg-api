@@ -13,18 +13,25 @@ class DbCreature(
         val name: String,
         val race: String,
 
-        @DBRef
-        val profession: DbProfession,
 
-        val age: Int,
-        val sex: Int,
         val traits: MutableList<TraitWithValue>,
+
+        @DBRef
         val skills: MutableList<DbSkills>,
+
+        @DBRef
         val abilities: MutableList<DbAbility>,
 
         val description: String = "",
+        val specialRules: String = "",
+
+        @DBRef
         val armors: MutableList<DbArmor> = mutableListOf(),
+
+        @DBRef
         val weapons: MutableList<DbWeapon> = mutableListOf(),
+
+        @DBRef
         val items: MutableList<DbItem> = mutableListOf(),
 
         @Id val id: String? = null
@@ -33,13 +40,11 @@ class DbCreature(
         companion object {
             fun fromDb(db: DbCreature) = Creature(db.name,
                     db.race,
-                    DbProfession.toProfession(db.profession),
-                    db.age,
-                    Sex.fromDb(db.sex),
                     db.traits,
                     db.skills.map { DbSkills.toSkill(it) }.toMutableList(),
                     db.abilities.map { DbAbility.toAbility(it) }.toMutableList(),
                     db.description,
+                    db.specialRules,
                     db.armors.map { DbArmor.toArmor(it) }.toMutableList(),
                     db.weapons.map { DbWeapon.toWeapon(it) }.toMutableList(),
                     db.items.map { DbItem.toItem(it) }.toMutableList(),

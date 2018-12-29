@@ -53,7 +53,6 @@ class CreatureFactory {
 
 
     private fun createNewCreature(dto: CreateCreatureDto): Creature {
-        val profession = professionRepo.findById(dto.professionId).orElseThrow { throw MissingEntityException(ErrorCode.PROFESSION_NOT_FOUND) }
         val skills = getSkills(dto.skillsId)
         val abilities = getAbilities(dto.abilitiesId)
         val armors = getArmors(dto.armorsId)
@@ -61,14 +60,12 @@ class CreatureFactory {
         val weapons = getWeapons(dto.weaponsId)
 
         return Creature(dto.name,
-                dto.race,
-                profession,
-                dto.age,
-                Sex.createSex(dto.sex),
+                dto.type,
                 dto.traits.map { TraitWithValue(Trait.createTrait(it.first), it.second) }.toMutableList(),
                 skills.toMutableList(),
                 abilities.toMutableList(),
                 dto.description,
+                dto.specialRules,
                 armors.toMutableList(),
                 weapons.toMutableList(),
                 items.toMutableList()
@@ -79,7 +76,6 @@ class CreatureFactory {
         if (!creatureRepo.existsById(dto.id)){
             throw MissingEntityException(ErrorCode.CREATURE_NOT_FOUND)
         }
-        val profession = professionRepo.findById(dto.professionId).orElseThrow { throw MissingEntityException(ErrorCode.PROFESSION_NOT_FOUND) }
         val skills = getSkills(dto.skillsId)
         val abilities = getAbilities(dto.abilitiesId)
         val armors = getArmors(dto.armorsId)
@@ -87,14 +83,12 @@ class CreatureFactory {
         val weapons = getWeapons(dto.weaponsId)
 
         return Creature(dto.name,
-                dto.race,
-                profession,
-                dto.age,
-                Sex.createSex(dto.sex),
+                dto.type,
                 dto.traits.map { TraitWithValue(Trait.createTrait(it.first), it.second) }.toMutableList(),
                 skills.toMutableList(),
                 abilities.toMutableList(),
                 dto.description,
+                dto.specialRules,
                 armors.toMutableList(),
                 weapons.toMutableList(),
                 items.toMutableList(),

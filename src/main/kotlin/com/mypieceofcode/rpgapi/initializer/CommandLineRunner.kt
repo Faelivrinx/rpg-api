@@ -6,6 +6,7 @@ import com.mypieceofcode.rpgapi.infrastructure.abilities.DbAbilitiesRepository
 import com.mypieceofcode.rpgapi.infrastructure.armors.DbArmorRepository
 import com.mypieceofcode.rpgapi.infrastructure.creatures.DbCreatureRepository
 import com.mypieceofcode.rpgapi.infrastructure.items.DbItemRepository
+import com.mypieceofcode.rpgapi.infrastructure.mutations.DbMutationRepository
 import com.mypieceofcode.rpgapi.infrastructure.persistence.*
 import com.mypieceofcode.rpgapi.infrastructure.professions.DbProfessionRepository
 import com.mypieceofcode.rpgapi.infrastructure.skills.DbSkillRepository
@@ -45,6 +46,9 @@ class CommandLineRunner : CommandLineRunner {
     lateinit var professionRepo: DbProfessionRepository
 
     @Autowired
+    lateinit var mutationRepo: DbMutationRepository
+
+    @Autowired
     lateinit var mongoTemplate: MongoTemplate
 
     override fun run(vararg args: String?) {
@@ -71,9 +75,9 @@ class CommandLineRunner : CommandLineRunner {
 
             val profession = DbProfession("Magik czarodziej", skills = mutableListOf(skill), abilities = mutableListOf(ability))
 
-            val creature = DbCreature("Potwor z bagien", "Nie czlowiek", profession, 1000, 1, mutableListOf(TraitWithValue(Trait.WW, 1)), mutableListOf(skill), mutableListOf(ability), weapons = mutableListOf(weapon, weapon1), armors = mutableListOf(armor))
+            val creature = DbCreature("Potwor z bagien", "Nie czlowiek", mutableListOf(TraitWithValue(Trait.WW, 1)), mutableListOf(skill), mutableListOf(ability), weapons = mutableListOf(weapon, weapon1), armors = mutableListOf(armor))
 
-
+            val mutation = DbMutation("Brak konczyny", "SINGLE", "Fajny opis, wymagany", "Chaos", listOf(Pair("Roll",  listOf("1-20", "20-100")), Pair("Opis", listOf("Smierc i zniszczenie", "No to samozaglada"))))
             //Saving
             skillRepo.save(skill)
             skillRepo.save(skill1)
@@ -92,6 +96,8 @@ class CommandLineRunner : CommandLineRunner {
             professionRepo.save(profession)
 
             creatureRepo.save(creature)
+
+            mutationRepo.save(mutation)
         }
     }
 

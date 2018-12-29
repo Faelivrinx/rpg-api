@@ -2,12 +2,10 @@ package com.mypieceofcode.rpgapi.infrastructure.creatures
 
 import com.mypieceofcode.rpgapi.domain.creatures.Creature
 import com.mypieceofcode.rpgapi.domain.creatures.CreatureRepository
-import com.mypieceofcode.rpgapi.domain.enums.Sex
 import com.mypieceofcode.rpgapi.exceptions.EntityAlreadyExistsException
 import com.mypieceofcode.rpgapi.exceptions.ErrorCode
 import com.mypieceofcode.rpgapi.exceptions.MissingEntityException
 import com.mypieceofcode.rpgapi.infrastructure.persistence.*
-import com.mypieceofcode.rpgapi.infrastructure.professions.DbProfessionRepository
 import org.springframework.data.mongodb.repository.MongoRepository
 import org.springframework.stereotype.Repository
 import org.springframework.stereotype.Service
@@ -15,8 +13,7 @@ import java.util.*
 
 @Service
 class CreatureRepository(
-        val repository: DbCreatureRepository,
-        val professionRepository: DbProfessionRepository
+        val repository: DbCreatureRepository
 ) : CreatureRepository {
 
     override fun findAll(): List<Creature> = repository.findAll().map { DbCreature.fromDb(it) }
@@ -35,13 +32,13 @@ class CreatureRepository(
             throw EntityAlreadyExistsException(ErrorCode.CREATURE_ALREADY_EXISTS)
         }
 
-        val profession = professionRepository.findByName(obj.profession.name)
-                ?: throw MissingEntityException(ErrorCode.PROFESSION_NOT_FOUND)
 
-        val db = DbCreature(obj.name, obj.race, profession, obj.age, Sex.createDb(obj.sex), obj.traits,
+
+        val db = DbCreature(obj.name, obj.type, obj.traits,
                 obj.skills.map { DbSkills.fromSkill(it) }.toMutableList(),
                 obj.abilities.map { DbAbility.fromAbility(it) }.toMutableList(),
                 obj.description,
+                obj.specialRules,
                 obj.armors.map { DbArmor.fromArmor(it) }.toMutableList(),
                 obj.weapons.map { DbWeapon.fromWeapon(it) }.toMutableList(),
                 obj.items.map { DbItem.fromItem(it) }.toMutableList())
@@ -52,17 +49,17 @@ class CreatureRepository(
     override fun update(obj: Creature) {
         if (obj.id != null && repository.existsByName(obj.name)) {
 
-            val profession = professionRepository.findByName(obj.profession.name)
-                    ?: throw MissingEntityException(ErrorCode.PROFESSION_NOT_FOUND)
 
-            val db = DbCreature(obj.name, obj.race, profession, obj.age, Sex.createDb(obj.sex), obj.traits,
+            val db = DbCreature(obj.name, obj.type, obj.traits,
                     obj.skills.map { DbSkills.fromSkill(it) }.toMutableList(),
                     obj.abilities.map { DbAbility.fromAbility(it) }.toMutableList(),
                     obj.description,
+                    obj.specialRules,
                     obj.armors.map { DbArmor.fromArmor(it) }.toMutableList(),
                     obj.weapons.map { DbWeapon.fromWeapon(it) }.toMutableList(),
                     obj.items.map { DbItem.fromItem(it) }.toMutableList(),
                     obj.id)
+            repository.save(db)
 
         } else {
             throw MissingEntityException(ErrorCode.CREATURE_NOT_FOUND)

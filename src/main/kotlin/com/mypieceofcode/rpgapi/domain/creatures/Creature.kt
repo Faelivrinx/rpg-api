@@ -12,19 +12,17 @@ import org.springframework.data.annotation.Id
 
 data class Creature(
         val name: String,
-        val race: String,
-        val profession: Profession,
-        val age: Int,
-        val sex: Sex,
+        val type: String,
         val traits: MutableList<TraitWithValue>,
         val skills: MutableList<Skill>,
         val abilities: MutableList<Ability>,
 
         val description: String = "",
+        val specialRules: String = "",
         val armors : MutableList<Armor> = mutableListOf(),
         val weapons: MutableList<Weapon> = mutableListOf(),
         val items: MutableList<Item> = mutableListOf(),
 
-        @Id val id: String? = null
+        val id: String? = null
 ) {
 }
