@@ -24,6 +24,12 @@ tags:
   description: "everything about professions"
 - name: "characters"
   description: "everything about characters"
+- name: "creatures"
+  description: "everything about creatures (minotaurs etc)"
+- name: "spells"
+  description: "everything about spells (not rituals!)"
+- name: "mutations"
+  description: "everything about mutations"
 - name: "rools"
   description: "Did you roll but GM haven't time for you? Your welcome here!"
 schemes:
@@ -131,6 +137,318 @@ paths:
           description: "Skill deleted"
         404:
           description: "Skill not found"
+        500:
+          description: "Unexpected server error"
+  /mutations:
+    post:
+      tags:
+      - "mutations"
+      summary: "Create new mutation"
+      operationId: "newMutation"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Body required mutation object"
+        required: true
+        schema:
+          $ref: '#/definitions/CreateMutation'
+      responses:
+        200:
+          description: "Successed created mutation"
+        422:
+          description: "Invalid parameter exception"
+        500:
+          description: "Server unexpected error"
+    put:
+      tags:
+      - "mutations"
+      summary: "Update mutation by id in body"
+      operationId: "updateMutation"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Body required mutation object"
+        required: true
+        schema:
+          $ref: '#/definitions/UpdateMutation'
+      responses:
+        200:
+          description: "Successed updated mutation"
+        404:
+          description: "Mutation not found"
+        422:
+          description: "Invalid parameter exception"
+        500:
+          description: "Server unexpected error"
+    get:
+      tags:
+      - "mutations"
+      summary: "Get all mutations"
+      operationId: "getMutations"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Succeed operation"
+          schema:
+            type: "array"
+            items:
+              $ref: '#/definitions/MutationDto'
+        204:
+          description: "Succeed operation but empty response"
+  /mutations/{id}:
+    get:
+      tags:
+      - mutations
+      summary: "Get mutation by id"
+      operationId: "getMutationById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of mutation"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: '#/definitions/MutationDto'
+        404:
+          description: "Mutation not found"
+    delete:
+      tags:
+      - mutations
+      summary: "Delete mutation by id"
+      operationId: "deleteMutationById"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of mutation"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Mutation deleted"
+        404:
+          description: "Mutation not found"
+        500:
+          description: "Unexpected server error"
+  /spells:
+    post:
+      tags:
+      - "spells"
+      summary: "Create new spell"
+      operationId: "newSpell"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Body required spell object"
+        required: true
+        schema:
+          $ref: '#/definitions/CreateSpell'
+      responses:
+        200:
+          description: "Successed created spell"
+        422:
+          description: "Invalid parameter exception"
+        500:
+          description: "Server unexpected error"
+    put:
+      tags:
+      - "spells"
+      summary: "Update spell by id in body"
+      operationId: "updateSpell"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Body required spell object"
+        required: true
+        schema:
+          $ref: '#/definitions/UpdateSpell'
+      responses:
+        200:
+          description: "Successed updated spell"
+        404:
+          description: "Spell not found"
+        422:
+          description: "Invalid parameter exception"
+        500:
+          description: "Server unexpected error"
+    get:
+      tags:
+      - "spells"
+      summary: "Get all spells"
+      operationId: "getSpells"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Succeed operation"
+          schema:
+            type: "array"
+            items:
+              $ref: '#/definitions/SpellResponse'
+        204:
+          description: "Succeed operation but empty response"
+  /spells/{id}:
+    get:
+      tags:
+      - spells
+      summary: "Get spell by id"
+      operationId: "getSleppById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of spell"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: '#/definitions/SpellResponse'
+        404:
+          description: "Spell not found"
+    delete:
+      tags:
+      - spells
+      summary: "Delete spell by id"
+      operationId: "deleteSpellById"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of spell"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Spell deleted"
+        404:
+          description: "Spell not found"
+        500:
+          description: "Unexpected server error"
+  /creatures:
+    post:
+      tags:
+      - "creatures"
+      summary: "Create new creature"
+      operationId: "newCreature"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Body required creature object"
+        required: true
+        schema:
+          $ref: '#/definitions/CreateCreature'
+      responses:
+        200:
+          description: "Successed created creature"
+        422:
+          description: "Invalid parameter exception"
+        500:
+          description: "Server unexpected error"
+    put:
+      tags:
+      - "creatures"
+      summary: "Update creature by id in body"
+      operationId: "updateCreature"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Body required creature object"
+        required: true
+        schema:
+          $ref: '#/definitions/UpdateCreature'
+      responses:
+        200:
+          description: "Successed updated craeture"
+        404:
+          description: "Creature not found"
+        422:
+          description: "Invalid parameter exception"
+        500:
+          description: "Server unexpected error"
+    get:
+      tags:
+      - "creatures"
+      summary: "Get all creatures"
+      operationId: "getCreatures"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Succeed operation"
+          schema:
+            type: "array"
+            items:
+              $ref: '#/definitions/CreatureResponse'
+        204:
+          description: "Succeed operation but empty response"
+  /creatures/{id}:
+    get:
+      tags:
+      - creatures
+      summary: "Get creature by id"
+      operationId: "getCreatureById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of creature"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: '#/definitions/CreatureResponse'
+        404:
+          description: "Creature not found"
+    delete:
+      tags:
+      - creatures
+      summary: "Delete creature by id"
+      operationId: "deleteCreatureById"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of creature"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Creature deleted"
+        404:
+          description: "Creature not found"
         500:
           description: "Unexpected server error"
   /abilities:
@@ -1454,6 +1772,240 @@ definitions:
           $ref: '#/definitions/ItemResponse'
       money:
         type: "number"
+  CreateCreature:
+    type: "object"
+    required: [name, type, traits, skillsId, abilitiesId]
+    properties:
+      name:
+        type: "string"
+      type:
+        type: "string"
+      traits:
+        type: "array"
+        items:
+          $ref: '#/definitions/TraitValueDto'
+      skillsId:
+        type: "array"
+        items:
+          type: "string"
+      abilitiesId:
+        type: "array"
+        items:
+          type: "string"
+      description:
+        type: "string"
+      specialRules:
+        type: "string"
+      armorsId:
+        type: "array"
+        items:
+          type: "string"
+      weaponsId:
+        type: "array"
+        items:
+          type: "string"
+      itemsId:
+        type: "array"
+        items:
+          type: "string"
+  UpdateCreature:
+    type: "object"
+    required: [id, name, type, traits, skillsId, abilitiesId, description, specialRules, armorsId, weaponsId, itemsId]
+    properties:
+      id:
+        type: "string"
+      name:
+        type: "string"
+      type:
+        type: "string"
+      traits:
+        type: "array"
+        items:
+          $ref: '#/definitions/TraitValueDto'
+      skillsId:
+        type: "array"
+        items:
+          type: "string"
+      abilitiesId:
+        type: "array"
+        items:
+          type: "string"
+      description:
+        type: "string"
+      specialRules:
+        type: "string"
+      armorsId:
+        type: "array"
+        items:
+          type: "string"
+      weaponsId:
+        type: "array"
+        items:
+          type: "string"
+      itemsId:
+        type: "array"
+        items:
+          type: "string"
+  CreatureResponse:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      name:
+        type: "string"
+      type:
+        type: "string"
+      traits:
+        type: "array"
+        items:
+          $ref: '#/definitions/TraitValueDto'
+      skillsId:
+        type: "array"
+        items:
+          type: "string"
+      abilitiesId:
+        type: "array"
+        items:
+          type: "string"
+      description:
+        type: "string"
+      specialRules:
+        type: "string"
+      armorsId:
+        type: "array"
+        items:
+          type: "string"
+      weaponsId:
+        type: "array"
+        items:
+          type: "string"
+      itemsId:
+        type: "array"
+        items:
+          type: "string"
+  CreateSpell:
+    type: "object"
+    required: [name, powerLevel, castTime, component, description]
+    properties:
+      name:
+        type: "string"
+      powerLevel:
+        type: "integer"
+      castTime:
+        type: "string"
+      component:
+        type: "string"
+      description:
+        type: "string"
+      table:
+        type: "array"
+        items:
+          $ref: '#/definitions/TableValueDto'
+      duration:
+        type: "string"
+  UpdateSpell:
+    type: "object"
+    required: [name, powerLevel, castTime, component, description, table, duration]
+    properties:
+      name:
+        type: "string"
+      powerLevel:
+        type: "integer"
+      castTime:
+        type: "string"
+      component:
+        type: "string"
+      description:
+        type: "string"
+      table:
+        type: "array"
+        items:
+          $ref: '#/definitions/TableValueDto'
+      duration:
+        type: "string"
+  SpellResponse:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      powerLevel:
+        type: "integer"
+      castTime:
+        type: "string"
+      component:
+        type: "string"
+      description:
+        type: "string"
+      table:
+        type: "array"
+        items:
+          $ref: '#/definitions/TableValueDto'
+      duration:
+        type: "string"
+  CreateMutation:
+    type: "object"
+    required: [name, type, description, godType]
+    properties:
+      name:
+        type: "string"
+      type:
+        $ref: '#/definitions/MutationType'
+      description:
+        type: "string"
+      godType:
+        type: "string"
+        description: "Feel free but should be changed in feature to enum type"
+      table:
+        $ref: '#/definitions/MutationTable'
+  UpdateMutation:
+    type: "object"
+    required: [name, type, description, godType, table, id]
+    properties:
+      name:
+        type: "string"
+      type:
+        $ref: '#/definitions/MutationType'
+      description:
+        type: "string"
+      godType:
+        type: "string"
+        description: "Feel free but should be changed in feature to enum type"
+      table:
+        $ref: '#/definitions/MutationTable'
+      id:
+        type: "string"
+  MutationDto:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      type:
+        $ref: '#/definitions/MutationType'
+      description:
+        type: "string"
+      godType:
+        type: "string"
+      table:
+        $ref: '#/definitions/MutationTable'
+      id:
+        type: "string"
+  MutationType:
+    type: string
+    enum: [SINGLE, MULTIPLE]
+  MutationTable:
+    type: "array"
+    items:
+      $ref: '#/definitions/Column'
+  Column:
+    type: "object"
+    properties:
+      first:
+        type: "string"
+        description: "Column header"
+      second:
+        type: array
+        items:
+          type: "string"
   TraitRoll:
     type: "object"
     required: [name, raceId, roll]
@@ -1523,13 +2075,31 @@ definitions:
   WeaponType:
     type: "string"
     enum: [WHITE, RANGED, AMMO, OTHER]
-  ProfessionTrait:
+  TraitWithValue:
     type: "object"
     properties:
       traitName:
         $ref: '#/definitions/TraitsEnum'
       traitExtend:
         type: number
+  TraitValueDto:
+    type: "object"
+    properties:
+      first:
+        type: "string"
+        description: "Trait Name (WW, SW, O etc)"
+      second:
+        type: "number"
+        description: "Trait value"
+  TableValueDto:
+    type: "object"
+    properties:
+      first:
+        type: "string"
+        description: "Table first column"
+      second:
+        type: "string"
+        description: "Table second column"
   CharacterTrait:
     type: "object"
     properties:
