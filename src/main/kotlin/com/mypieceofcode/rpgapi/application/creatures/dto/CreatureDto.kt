@@ -17,6 +17,7 @@ data class CreatureDto(
         val skills: List<SkillDto>,
         val abilities: List<AbilityDto>,
 
+        val imageName: String,
         val description: String,
         val specialRules: String,
         val armors: List<ArmorDto>,
@@ -33,6 +34,7 @@ data class CreatureDto(
                       c.traits.map { Pair(it.name.toString(), it.value) },
                       c.skills.map { SkillDto.mapToDto(it) },
                       c.abilities.map { AbilityDto.mapToDto(it) },
+                      c.imageName,
                       c.description,
                       c.specialRules,
                       c.armors.map { ArmorDto.fromArmor(it) },

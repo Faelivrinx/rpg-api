@@ -22,6 +22,8 @@ class DbCreature(
         @DBRef
         val abilities: MutableList<DbAbility>,
 
+
+        val imageName: String = "",
         val description: String = "",
         val specialRules: String = "",
 
@@ -43,6 +45,7 @@ class DbCreature(
                     db.traits,
                     db.skills.map { DbSkills.toSkill(it) }.toMutableList(),
                     db.abilities.map { DbAbility.toAbility(it) }.toMutableList(),
+                    db.imageName,
                     db.description,
                     db.specialRules,
                     db.armors.map { DbArmor.toArmor(it) }.toMutableList(),

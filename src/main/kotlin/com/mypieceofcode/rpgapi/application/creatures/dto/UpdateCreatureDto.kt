@@ -8,6 +8,7 @@ data class UpdateCreatureDto(
         val skillsId: List<String>,
         val abilitiesId: List<String>,
 
+        val imageName: String,
         val description: String,
         val specialRules: String,
         val armorsId: List<String>,

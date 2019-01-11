@@ -1794,6 +1794,8 @@ definitions:
           type: "string"
       description:
         type: "string"
+      imageName:
+        type: "string"
       specialRules:
         type: "string"
       armorsId:
@@ -1810,7 +1812,7 @@ definitions:
           type: "string"
   UpdateCreature:
     type: "object"
-    required: [id, name, type, traits, skillsId, abilitiesId, description, specialRules, armorsId, weaponsId, itemsId]
+    required: [id, name, type, traits, skillsId, abilitiesId, imageName, description, specialRules, armorsId, weaponsId, itemsId]
     properties:
       id:
         type: "string"
@@ -1831,6 +1833,8 @@ definitions:
         items:
           type: "string"
       description:
+        type: "string"
+      imageName:
         type: "string"
       specialRules:
         type: "string"
@@ -1859,30 +1863,32 @@ definitions:
         type: "array"
         items:
           $ref: '#/definitions/TraitValueDto'
-      skillsId:
+      skills:
         type: "array"
         items:
-          type: "string"
-      abilitiesId:
+          $ref: '#/definitions/SkillResponse'
+      abilities:
         type: "array"
         items:
-          type: "string"
+          $ref: '#/definitions/AbilityResponse'
+      imageName:
+        type: "string"
       description:
         type: "string"
       specialRules:
         type: "string"
-      armorsId:
+      armors:
         type: "array"
         items:
-          type: "string"
-      weaponsId:
+          $ref: '#/definitions/ArmorResponse'
+      weapons:
         type: "array"
         items:
-          type: "string"
-      itemsId:
+          $ref: '#/definitions/WeaponResponse'
+      items:
         type: "array"
         items:
-          type: "string"
+          $ref: '#/definitions/ItemResponse'
   CreateSpell:
     type: "object"
     required: [name, powerLevel, castTime, component, description]
@@ -1944,7 +1950,7 @@ definitions:
         type: "string"
   CreateMutation:
     type: "object"
-    required: [name, type, description, godType]
+    required: [name, type, description, godType, roll, ps]
     properties:
       name:
         type: "string"
@@ -1953,13 +1959,20 @@ definitions:
       description:
         type: "string"
       godType:
+        $ref: '#/definitions/GodType'
+      ps:
+        type: "integer"
+      roll:
+        type: 'string'
+      comment:
         type: "string"
-        description: "Feel free but should be changed in feature to enum type"
+      variants:
+        type: "string"
       table:
         $ref: '#/definitions/MutationTable'
   UpdateMutation:
     type: "object"
-    required: [name, type, description, godType, table, id]
+    required: [name, type, description, godType, ps,  table, roll, comment, variants, id]
     properties:
       name:
         type: "string"
@@ -1968,8 +1981,15 @@ definitions:
       description:
         type: "string"
       godType:
+        $ref: '#/definitions/GodType'
+      ps:
+        type: "integer"
+      roll:
+        type: 'string'
+      comment:
         type: "string"
-        description: "Feel free but should be changed in feature to enum type"
+      variants:
+        type: "string"
       table:
         $ref: '#/definitions/MutationTable'
       id:
@@ -1984,6 +2004,14 @@ definitions:
       description:
         type: "string"
       godType:
+        $ref: '#/definitions/GodType'
+      ps:
+        type: "integer"
+      roll:
+        type: 'string'
+      comment:
+        type: "string"
+      variants:
         type: "string"
       table:
         $ref: '#/definitions/MutationTable'
@@ -1996,6 +2024,9 @@ definitions:
     type: "array"
     items:
       $ref: '#/definitions/Column'
+  GodType:
+    type: string
+    enum: [KHORN, NURGLE, SLAANESH, TZEENTCH, OTHER]
   Column:
     type: "object"
     properties:

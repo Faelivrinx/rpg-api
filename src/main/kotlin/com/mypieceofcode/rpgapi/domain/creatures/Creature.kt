@@ -17,6 +17,7 @@ data class Creature(
         val skills: MutableList<Skill>,
         val abilities: MutableList<Ability>,
 
+        val imageName: String = "",
         val description: String = "",
         val specialRules: String = "",
         val armors : MutableList<Armor> = mutableListOf(),

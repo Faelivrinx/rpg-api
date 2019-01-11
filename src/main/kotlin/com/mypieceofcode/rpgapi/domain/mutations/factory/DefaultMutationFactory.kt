@@ -2,10 +2,7 @@ package com.mypieceofcode.rpgapi.domain.mutations.factory
 
 import com.mypieceofcode.rpgapi.application.mutations.dto.CreateMutationDto
 import com.mypieceofcode.rpgapi.application.mutations.dto.UpdateMutationDto
-import com.mypieceofcode.rpgapi.domain.mutations.Mutation
-import com.mypieceofcode.rpgapi.domain.mutations.MutationTable
-import com.mypieceofcode.rpgapi.domain.mutations.MutationFactory
-import com.mypieceofcode.rpgapi.domain.mutations.MutationType
+import com.mypieceofcode.rpgapi.domain.mutations.*
 import com.mypieceofcode.rpgapi.exceptions.DomainException
 import com.mypieceofcode.rpgapi.exceptions.ErrorCode
 import com.mypieceofcode.rpgapi.exceptions.InvalidParameterException
@@ -27,7 +24,11 @@ class DefaultMutationFactory : MutationFactory {
         return Mutation(dto.name,
                 MutationType.createType(dto.type),
                 dto.description,
-                dto.godType,
+                Gods.createGod(dto.godType),
+                dto.ps,
+                dto.roll,
+                dto.comment,
+                dto.variants,
                 createTable(table),
                 dto.id
         )
@@ -38,7 +39,11 @@ class DefaultMutationFactory : MutationFactory {
         return Mutation(dto.name,
                 MutationType.createType(dto.type),
                 dto.description,
-                dto.godType,
+                Gods.createGod(dto.godType),
+                dto.ps,
+                dto.roll,
+                dto.comment,
+                dto.variants,
                 createTable(table)
         )
     }

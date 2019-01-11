@@ -1,0 +1,9 @@
+
+spring:
+  data:
+    mongodb:
+      host: 37.233.98.86
+      port: 27017
+      database: rpg_db
+      username: rpgUser
+      password: Ha$lo123
