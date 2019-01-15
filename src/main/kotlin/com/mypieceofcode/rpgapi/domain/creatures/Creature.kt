@@ -12,7 +12,7 @@ import org.springframework.data.annotation.Id
 
 data class Creature(
         val name: String,
-        val type: String,
+        val type: CreatureType,
         val traits: MutableList<TraitWithValue>,
         val skills: MutableList<Skill>,
         val abilities: MutableList<Ability>,

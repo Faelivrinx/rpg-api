@@ -1,6 +1,8 @@
 package com.mypieceofcode.rpgapi.application.armors.dto
 
+import com.mypieceofcode.rpgapi.domain.custom.Price
 import com.mypieceofcode.rpgapi.domain.enums.ArmorType
+import com.mypieceofcode.rpgapi.domain.enums.Availability
 import com.mypieceofcode.rpgapi.domain.enums.ProtectionArea.Companion.createArea
 import com.mypieceofcode.rpgapi.domain.equipment.armors.Armor
 
@@ -9,7 +11,7 @@ data class UpdateArmorDto(
         val type: String,
         val protectionAreas: List<String>,
         val pz: Int,
-        val price: Float,
+        val price: Price,
         val weight: Float,
         val availability: String,
         val description: String,
@@ -25,7 +27,7 @@ data class UpdateArmorDto(
                 dto.pz,
                 dto.price,
                 dto.weight,
-                dto.availability,
+                Availability.createAvailability(dto.availability),
                 dto.description,
                 dto.url,
                 dto.id

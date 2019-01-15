@@ -1,6 +1,8 @@
 package com.mypieceofcode.rpgapi.infrastructure.persistence
 
+import com.mypieceofcode.rpgapi.domain.custom.Price
 import com.mypieceofcode.rpgapi.domain.enums.ArmorType.Companion.createArmorType
+import com.mypieceofcode.rpgapi.domain.enums.Availability
 import com.mypieceofcode.rpgapi.domain.enums.ProtectionArea.Companion.createArea
 import com.mypieceofcode.rpgapi.domain.equipment.armors.Armor
 import org.springframework.data.annotation.Id
@@ -12,7 +14,7 @@ data class DbArmor(
         val type: String,
         val protectionAreas: List<String>,
         val pz: Int,
-        val price: Float,
+        val price: Price,
         val weight: Float,
         val availability: String,
         val description: String,
@@ -28,7 +30,7 @@ data class DbArmor(
                 db.pz,
                 db.price,
                 db.weight,
-                db.availability,
+                Availability.createAvailability(db.availability),
                 db.description,
                 db.url,
                 db.id)
@@ -40,7 +42,7 @@ data class DbArmor(
                 armor.pz,
                 armor.price,
                 armor.weight,
-                armor.availability,
+                armor.availability.toString(),
                 armor.description,
                 armor.url,
                 armor.id

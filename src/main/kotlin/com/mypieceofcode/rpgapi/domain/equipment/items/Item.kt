@@ -1,6 +1,8 @@
 package com.mypieceofcode.rpgapi.domain.equipment.items
 
 import com.mypieceofcode.rpgapi.domain.DomainObject
+import com.mypieceofcode.rpgapi.domain.custom.Price
+import com.mypieceofcode.rpgapi.domain.enums.Availability
 import com.mypieceofcode.rpgapi.exceptions.ErrorCode
 import com.mypieceofcode.rpgapi.exceptions.InvalidEntityException
 import org.apache.commons.lang3.StringUtils.isBlank
@@ -8,8 +10,8 @@ import org.apache.commons.lang3.StringUtils.isBlank
 data class Item(
         val name: String,
         val description: String,
-        val availability: String,
-        val price: Float,
+        val availability: Availability,
+        val price: Price,
         val id: String? = null
 ) : DomainObject() {
 
@@ -27,10 +29,8 @@ data class Item(
     }
 
 
-    private fun validatePrice(price: Float) {
-        if (price < 0.0f){
-            throw InvalidEntityException(ErrorCode.ITEM_INVALID_PRICE)
-        }
+    private fun validatePrice(price: Price) {
+
     }
 
     companion object {

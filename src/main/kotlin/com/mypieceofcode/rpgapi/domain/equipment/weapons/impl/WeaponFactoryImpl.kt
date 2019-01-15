@@ -2,6 +2,7 @@ package com.mypieceofcode.rpgapi.domain.equipment.weapons.impl
 
 import com.mypieceofcode.rpgapi.application.weapons.dto.NewWeaponDto
 import com.mypieceofcode.rpgapi.application.weapons.dto.UpdateWeaponDto
+import com.mypieceofcode.rpgapi.domain.enums.Availability
 import com.mypieceofcode.rpgapi.domain.enums.WeaponCategory
 import com.mypieceofcode.rpgapi.domain.enums.WeaponType
 import com.mypieceofcode.rpgapi.domain.equipment.weapons.Weapon
@@ -34,7 +35,7 @@ class WeaponFactoryImpl : WeaponFactory {
                     weapon.description,
                     weapon.price,
                     weapon.weight,
-                    weapon.availability,
+                    Availability.createAvailability(weapon.availability),
                     weapon.url,
                     weapon.range,
                     weapon.reloadTime,
@@ -49,7 +50,7 @@ class WeaponFactoryImpl : WeaponFactory {
                     weapon.description,
                     weapon.price,
                     weapon.weight,
-                    weapon.availability,
+                    Availability.createAvailability(weapon.availability),
                     weapon.url,
                     id = weapon.id)
         }
@@ -67,7 +68,7 @@ class WeaponFactoryImpl : WeaponFactory {
                     db.description,
                     db.price,
                     db.weight,
-                    db.availability,
+                    Availability.createAvailability(db.availability),
                     db.url,
                     db.range!!,
                     db.reloadTime!!,
@@ -82,7 +83,7 @@ class WeaponFactoryImpl : WeaponFactory {
                     db.description,
                     db.price,
                     db.weight,
-                    db.availability,
+                    Availability.createAvailability(db.availability),
                     db.url,
                     id = db.id)
         }
@@ -100,7 +101,7 @@ class WeaponFactoryImpl : WeaponFactory {
                     dto.description,
                     dto.price,
                     dto.weight,
-                    dto.availability,
+                    Availability.createAvailability(dto.availability),
                     dto.url,
                     dto.range,
                     dto.reloadTime
@@ -114,7 +115,7 @@ class WeaponFactoryImpl : WeaponFactory {
                     dto.description,
                     dto.price,
                     dto.weight,
-                    dto.availability,
+                    Availability.createAvailability(dto.availability),
                     dto.url)
         }
     }

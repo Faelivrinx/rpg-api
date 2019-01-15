@@ -60,7 +60,7 @@ class CreatureFactory {
         val weapons = getWeapons(dto.weaponsId)
 
         return Creature(dto.name,
-                dto.type,
+                CreatureType.createCreature(dto.type),
                 dto.traits.map { TraitWithValue(Trait.createTrait(it.first), it.second) }.toMutableList(),
                 skills.toMutableList(),
                 abilities.toMutableList(),
@@ -84,7 +84,7 @@ class CreatureFactory {
         val weapons = getWeapons(dto.weaponsId)
 
         return Creature(dto.name,
-                dto.type,
+                CreatureType.createCreature(dto.type),
                 dto.traits.map { TraitWithValue(Trait.createTrait(it.first), it.second) }.toMutableList(),
                 skills.toMutableList(),
                 abilities.toMutableList(),

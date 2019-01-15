@@ -1,5 +1,6 @@
 package com.mypieceofcode.rpgapi.application.weapons.dto
 
+import com.mypieceofcode.rpgapi.domain.custom.Price
 import com.mypieceofcode.rpgapi.domain.equipment.weapons.Weapon
 import com.mypieceofcode.rpgapi.exceptions.ErrorCode
 import com.mypieceofcode.rpgapi.exceptions.InvalidEntityException
@@ -11,13 +12,13 @@ data class WeaponDto(
         val category: String,
         val power: String,
         val weaponTraits: List<String>,
-        val description: String ,
-        val price: Float ,
+        val description: String,
+        val price: Price,
         val weight: Float,
         val availability: String,
-        val url: String ,
-        val range: Float?  = null ,
-        val reloadTime: String? = null ,
+        val url: String,
+        val range: Float?  = null,
+        val reloadTime: String? = null,
         val id: String
 ) {
 

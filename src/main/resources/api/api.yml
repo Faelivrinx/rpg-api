@@ -1252,11 +1252,11 @@ definitions:
       name:
         type: "string"
       price:
-        type: "number"
+        $ref: '#/definitions/Price'
       description:
         type: "string"
       availability:
-        type: "string"
+        $ref: '#/definitions/Availability'
   UpdateItem:
     type: "object"
     required: [id, name, price, description, availability]
@@ -1266,11 +1266,11 @@ definitions:
       name:
         type: "string"
       price:
-        type: "number"
+        $ref: '#/definitions/Price'
       description:
         type: "string"
       availability:
-        type: "string"
+        $ref: '#/definitions/Availability'
   ItemResponse:
     type: "object"
     properties:
@@ -1279,11 +1279,11 @@ definitions:
       name:
         type: "string"
       price:
-        type: "number"
+        $ref: '#/definitions/Price'
       description:
         type: "string"
       availability:
-        type: "string"
+        $ref: '#/definitions/Availability'
   CreateArmor:
     type: "object"
     required:
@@ -1297,7 +1297,7 @@ definitions:
       type:
         $ref: '#/definitions/ArmorType'
       price:
-        type: "number"
+        $ref: '#/definitions/Price'
       protectionAreas:
         type: "array"
         items:
@@ -1311,7 +1311,7 @@ definitions:
       url:
         type: "string"
       availability:
-        type: "string"
+        $ref: '#/definitions/Availability'
   UpdateArmor:
     type: "object"
     required:
@@ -1333,7 +1333,7 @@ definitions:
       type:
         $ref: '#/definitions/ArmorType'
       price:
-        type: "number"
+        $ref: '#/definitions/Price'
       protectionAreas:
         type: "array"
         items:
@@ -1347,7 +1347,7 @@ definitions:
       url:
         type: "string"
       availability:
-        type: "string"
+        $ref: '#/definitions/Availability'
   ArmorResponse:
     type: "object"
     properties:
@@ -1358,7 +1358,7 @@ definitions:
       type:
         $ref: '#/definitions/ArmorType'
       price:
-        type: "number"
+        $ref: '#/definitions/Price'
       protectionAreas:
         type: "array"
         items:
@@ -1372,7 +1372,7 @@ definitions:
       url:
         type: "string"
       availability:
-        type: "string"
+        $ref: '#/definitions/Availability'
   CreateWeapon:
     type: "object"
     required: [name, type, category, power, weaponTraits]
@@ -1393,11 +1393,11 @@ definitions:
       description:
         type: "string"
       price:
-        type: "number"
+        $ref: '#/definitions/Price'
       weight:
         type: "integer"
       availability:
-        type: "string"
+        $ref: '#/definitions/Availability'
       range:
         description: "In meters. Only apply on weapon type: 'ranged'"
         required: ["WEAPON_TYPE: RANGED"]
@@ -1426,11 +1426,11 @@ definitions:
       description:
         type: "string"
       price:
-        type: "number"
+        $ref: '#/definitions/Price'
       weight:
         type: "integer"
       availability:
-        type: "string"
+        $ref: '#/definitions/Availability'
       range:
         description: "In meters. Only apply on weapon type: 'ranged'"
         required: ["WEAPON_TYPE: RANGED"]
@@ -1458,11 +1458,11 @@ definitions:
       description:
         type: "string"
       price:
-        type: "number"
+        $ref: '#/definitions/Price'
       weight:
         type: "integer"
       availability:
-        type: "string"
+        $ref: '#/definitions/Availability'
       range:
         description: "In meters. Only apply on weapon type: 'ranged'"
         required: ["WEAPON_TYPE: RANGED"]
@@ -1779,7 +1779,7 @@ definitions:
       name:
         type: "string"
       type:
-        type: "string"
+        $ref: '#/definitions/CreatureType'
       traits:
         type: "array"
         items:
@@ -1819,7 +1819,7 @@ definitions:
       name:
         type: "string"
       type:
-        type: "string"
+        $ref: '#/definitions/CreatureType'
       traits:
         type: "array"
         items:
@@ -1858,7 +1858,7 @@ definitions:
       name:
         type: "string"
       type:
-        type: "string"
+        $ref: '#/definitions/CreatureType'
       traits:
         type: "array"
         items:
@@ -2048,6 +2048,9 @@ definitions:
       roll:
         type: "number"
         maximum: 20
+  CreatureType:
+    type: "string"
+    enum: [MUTANT, ANIMAL, UNDEAD, DEMON, OTHER]
   AbilityRoll:
     type: "object"
     required: [raceId, roll]
@@ -2156,6 +2159,18 @@ definitions:
         type: "string"
       secondId:
         type: "string"
+  Availability:
+    type: "string"
+    enum: [COMMON, RARE, VERY_RARE, SPORADIC, LITTLE]
+  Price:
+    type: "object"
+    properties:
+      gold:
+        type: "number"
+      silver:
+        type: "number"
+      bronze:
+        type: "number"
   OptionalSkillResponse:
     type: "object"
     properties:

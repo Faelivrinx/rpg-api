@@ -1,5 +1,6 @@
 package com.mypieceofcode.rpgapi.application.items.dto
 
+import com.mypieceofcode.rpgapi.domain.custom.Price
 import com.mypieceofcode.rpgapi.domain.equipment.items.Item
 import com.mypieceofcode.rpgapi.exceptions.ErrorCode
 import com.mypieceofcode.rpgapi.exceptions.InvalidEntityException
@@ -8,7 +9,7 @@ data class ItemDto(
         val name: String,
         val description: String,
         val availability: String,
-        val price: Float,
+        val price: Price,
         val id: String
 ) {
 

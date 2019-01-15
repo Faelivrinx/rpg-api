@@ -1,6 +1,7 @@
 package com.mypieceofcode.rpgapi.infrastructure.persistence
 
 import com.mypieceofcode.rpgapi.domain.creatures.Creature
+import com.mypieceofcode.rpgapi.domain.creatures.CreatureType
 import com.mypieceofcode.rpgapi.domain.enums.Sex
 import com.mypieceofcode.rpgapi.domain.equipment.armors.Armor
 import com.mypieceofcode.rpgapi.domain.profession.TraitWithValue
@@ -41,7 +42,7 @@ class DbCreature(
 
         companion object {
             fun fromDb(db: DbCreature) = Creature(db.name,
-                    db.race,
+                    CreatureType.valueOf(db.race),
                     db.traits,
                     db.skills.map { DbSkills.toSkill(it) }.toMutableList(),
                     db.abilities.map { DbAbility.toAbility(it) }.toMutableList(),

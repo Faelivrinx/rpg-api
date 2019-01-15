@@ -1,6 +1,8 @@
 package com.mypieceofcode.rpgapi.domain.equipment.weapons
 
 import com.mypieceofcode.rpgapi.domain.DomainObject
+import com.mypieceofcode.rpgapi.domain.custom.Price
+import com.mypieceofcode.rpgapi.domain.enums.Availability
 import com.mypieceofcode.rpgapi.domain.enums.WeaponCategory
 import com.mypieceofcode.rpgapi.domain.enums.WeaponType
 import com.mypieceofcode.rpgapi.exceptions.ErrorCode
@@ -14,9 +16,9 @@ data class Weapon(
         val power: String,
         val weaponTraits: List<String>,
         val description: String,
-        val price: Float,
+        val price: Price,
         val weight: Float,
-        val availability: String,
+        val availability: Availability,
         val url: String,
         val range: Float? = null,
         val reloadTime: String? = null,
@@ -44,10 +46,8 @@ data class Weapon(
         }
     }
 
-    private fun validatePrice(price: Float) {
-        if (price < 0){
-            throw InvalidEntityException(ErrorCode.WEAPON_INVALID_PRICE)
-        }
+    private fun validatePrice(price: Price) {
+
     }
 
     private fun validateEmpty() {

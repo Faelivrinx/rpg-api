@@ -34,7 +34,7 @@ class CreatureRepository(
 
 
 
-        val db = DbCreature(obj.name, obj.type, obj.traits,
+        val db = DbCreature(obj.name, obj.type.toString(), obj.traits,
                 obj.skills.map { DbSkills.fromSkill(it) }.toMutableList(),
                 obj.abilities.map { DbAbility.fromAbility(it) }.toMutableList(),
                 obj.imageName,
@@ -51,7 +51,7 @@ class CreatureRepository(
         if (obj.id != null && repository.existsByName(obj.name)) {
 
 
-            val db = DbCreature(obj.name, obj.type, obj.traits,
+            val db = DbCreature(obj.name, obj.type.toString(), obj.traits,
                     obj.skills.map { DbSkills.fromSkill(it) }.toMutableList(),
                     obj.abilities.map { DbAbility.fromAbility(it) }.toMutableList(),
                     obj.imageName,

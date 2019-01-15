@@ -1,7 +1,9 @@
 package com.mypieceofcode.rpgapi.domain.equipment.armors
 
 import com.mypieceofcode.rpgapi.domain.DomainObject
+import com.mypieceofcode.rpgapi.domain.custom.Price
 import com.mypieceofcode.rpgapi.domain.enums.ArmorType
+import com.mypieceofcode.rpgapi.domain.enums.Availability
 import com.mypieceofcode.rpgapi.domain.enums.ProtectionArea
 import com.mypieceofcode.rpgapi.exceptions.ErrorCode
 import com.mypieceofcode.rpgapi.exceptions.InvalidEntityException
@@ -12,9 +14,9 @@ data class Armor (
         val type: ArmorType,
         val protectionArea: List<ProtectionArea>,
         val pz: Int,
-        val price: Float,
+        val price: Price,
         val weight: Float,
-        val availability: String,
+        val availability: Availability,
         val description: String,
         val url: String,
         val id: String? = null
@@ -38,10 +40,7 @@ data class Armor (
         }
     }
 
-    private fun validPriceAndPz(price: Float, pz: Int) {
-        if (price < 0){
-            throw InvalidEntityException(ErrorCode.ARMOR_INVALID_PRICE)
-        }
+    private fun validPriceAndPz(price: Price, pz: Int) {
         if (pz < 0){
             throw InvalidEntityException(ErrorCode.ARMOR_INVALID_PZ)
         }

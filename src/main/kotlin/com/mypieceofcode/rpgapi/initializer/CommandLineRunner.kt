@@ -1,5 +1,6 @@
 package com.mypieceofcode.rpgapi.initializer
 
+import com.mypieceofcode.rpgapi.domain.custom.Price
 import com.mypieceofcode.rpgapi.domain.enums.Trait
 import com.mypieceofcode.rpgapi.domain.profession.TraitWithValue
 import com.mypieceofcode.rpgapi.infrastructure.abilities.DbAbilitiesRepository
@@ -64,13 +65,13 @@ class CommandLineRunner : CommandLineRunner {
             val ability = DbAbility("Umiejetnosc", "Jeszcze lepsza umiejetnosc")
             val ability1 = DbAbility("Nieprzydanta umiejetnosc", "Czolganie na stojaco")
 
-            val item = DbItem("Fajny przedmiot", "Mozna z nim nic nei robic", 23f, "RARE")
-            val item1 = DbItem("Mieszek zlota", "Mozna go np. ukrasc", 1000f, "No rzadki dosc")
+            val item = DbItem("Fajny przedmiot", "Mozna z nim nic nei robic", Price(20f, 10f, 2f), "RARE")
+            val item1 = DbItem("Mieszek zlota", "Mozna go np. ukrasc", Price(0f, 20f, 10f), "No rzadki dosc")
 
-            val weapon = DbWeapon("Krotki miecz", "WHITE", "BASIC", "S+1", listOf("obuchowa"), "Fajny miecz, mozna machac", 100f, 10f, "RARE", "")
-            val weapon1 = DbWeapon("Elfi miotacz", "RANGED", "ADVANCE", "S+10", listOf("przebijajaca"), "Fajny luk jak dla szyszkojada", 100f, 10f, "W lesie sie trafi", "", 20f, "Akcja")
+            val weapon = DbWeapon("Krotki miecz", "WHITE", "BASIC", "S+1", listOf("obuchowa"), "Fajny miecz, mozna machac", Price(100f, 0f, 0f), 10f, "RARE", "")
+            val weapon1 = DbWeapon("Elfi miotacz", "RANGED", "ADVANCE", "S+10", listOf("przebijajaca"), "Fajny luk jak dla szyszkojada", Price(50f, 12f, 0f), 10f, "W lesie sie trafi", "", 20f, "Akcja")
 
-            val armor = DbArmor("Kolcza kolczuga", "CHAIN", listOf("HEAD"), 3, 100f, 20f, "RARE", "Fajni ludzie i armor", "")
+            val armor = DbArmor("Kolcza kolczuga", "CHAIN", listOf("HEAD"), 3, Price(0f, 1f, 2f), 20f, "RARE", "Fajni ludzie i armor", "")
 
             val profession = DbProfession("Magik czarodziej", skills = mutableListOf(skill), abilities = mutableListOf(ability))
 

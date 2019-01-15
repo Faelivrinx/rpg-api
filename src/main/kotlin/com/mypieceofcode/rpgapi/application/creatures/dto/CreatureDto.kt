@@ -30,7 +30,7 @@ data class CreatureDto(
               return CreatureDto(
                       c.id,
                       c.name,
-                      c.type,
+                      c.type.toString(),
                       c.traits.map { Pair(it.name.toString(), it.value) },
                       c.skills.map { SkillDto.mapToDto(it) },
                       c.abilities.map { AbilityDto.mapToDto(it) },
