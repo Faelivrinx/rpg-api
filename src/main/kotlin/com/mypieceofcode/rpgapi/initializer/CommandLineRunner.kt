@@ -75,7 +75,7 @@ class CommandLineRunner : CommandLineRunner {
 
             val profession = DbProfession("Magik czarodziej", skills = mutableListOf(skill), abilities = mutableListOf(ability))
 
-            val creature = DbCreature("Potwor z bagien", "Nie czlowiek", mutableListOf(TraitWithValue(Trait.WW, 1)), mutableListOf(skill), mutableListOf(ability), weapons = mutableListOf(weapon, weapon1), armors = mutableListOf(armor))
+            val creature = DbCreature("Potwor z bagien", "Nie czlowiek", mutableListOf(TraitWithValue(Trait.WW, 1, null)), mutableListOf(skill), mutableListOf(ability), weapons = mutableListOf(weapon, weapon1), armors = mutableListOf(armor))
 
             val mutation = DbMutation("Brak konczyny", "SINGLE", "Fajny opis, wymagany", "NURGAL", 1, "1-20", "", "", listOf(Pair("Roll",  listOf("1-20", "20-100")), Pair("Opis", listOf("Smierc i zniszczenie", "No to samozaglada"))))
             //Saving

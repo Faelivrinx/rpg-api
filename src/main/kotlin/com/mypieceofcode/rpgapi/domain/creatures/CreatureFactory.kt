@@ -61,7 +61,7 @@ class CreatureFactory {
 
         return Creature(dto.name,
                 CreatureType.createCreature(dto.type),
-                dto.traits.map { TraitWithValue(Trait.createTrait(it.first), it.second) }.toMutableList(),
+                dto.traits.map { TraitWithValue(Trait.createTrait(it.first), it.second, null) }.toMutableList(),
                 skills.toMutableList(),
                 abilities.toMutableList(),
                 dto.imageName,
@@ -85,7 +85,7 @@ class CreatureFactory {
 
         return Creature(dto.name,
                 CreatureType.createCreature(dto.type),
-                dto.traits.map { TraitWithValue(Trait.createTrait(it.first), it.second) }.toMutableList(),
+                dto.traits.map { TraitWithValue(Trait.createTrait(it.first), it.second, null) }.toMutableList(),
                 skills.toMutableList(),
                 abilities.toMutableList(),
                 dto.imageName,

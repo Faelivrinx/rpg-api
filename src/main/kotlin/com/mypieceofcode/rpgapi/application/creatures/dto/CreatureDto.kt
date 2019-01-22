@@ -31,7 +31,7 @@ data class CreatureDto(
                       c.id,
                       c.name,
                       c.type.toString(),
-                      c.traits.map { Pair(it.name.toString(), it.value) },
+                      c.traits.map { Pair(it.name.toString(), it.baseValue) },
                       c.skills.map { SkillDto.mapToDto(it) },
                       c.abilities.map { AbilityDto.mapToDto(it) },
                       c.imageName,

@@ -4,6 +4,7 @@ import com.mypieceofcode.rpgapi.domain.enums.Trait
 
 data class TraitWithValue(
         val name: Trait,
-        val value: Int
+        val baseValue: Int,
+        val extendValue: Int?
 ) {
 }

@@ -40,7 +40,7 @@ data class ProfessionDto(
                         profession.items.map { ItemDto.fromItem(it) },
                         profession.inProfession.map { BasicProfessionResponse(it.id, it.name) },
                         profession.outProfession.map { BasicProfessionResponse(it.id, it.name) },
-                        profession.traits.map { ProfessionTrait(it.name.toString(), it.value) },
+                        profession.traits.map { ProfessionTrait(it.name.toString(), it.baseValue, it.extendValue!!) },
                         profession.description,
                         profession.weapons.map { WeaponDto.fromWeapon(it) },
                         profession.armors.map { ArmorDto.fromArmor(it) },

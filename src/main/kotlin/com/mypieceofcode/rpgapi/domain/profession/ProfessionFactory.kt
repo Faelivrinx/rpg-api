@@ -56,7 +56,7 @@ class ProfessionFactory {
         val postProfession = getProfession(dto.postProfession)
         val weapons = getWeapons(dto.weapons)
         val armors = getArmors(dto.armors)
-        val traits = dto.traits.map { TraitWithValue(Trait.createTrait(it.traitName), it.traitExtend) }.toCollection(ArrayList())
+        val traits = dto.traits.map { TraitWithValue(Trait.createTrait(it.traitName), it.traitValue, it.traitExtend) }.toCollection(ArrayList())
         return Profession(dto.name, dto.description, skills,abilities, optionalSkills, items, preProfession, postProfession, traits, weapons, armors, dto.url, dto.id)
     }
 
@@ -69,7 +69,7 @@ class ProfessionFactory {
         val postProfession = getProfession(dto.postProfession)
         val weapons = getWeapons(dto.weapons)
         val armors = getArmors(dto.armors)
-        val traits = dto.traits.map { TraitWithValue(Trait.createTrait(it.traitName), it.traitExtend) }.toCollection(ArrayList())
+        val traits = dto.traits.map { TraitWithValue(Trait.createTrait(it.traitName), it.traitValue, it.traitExtend) }.toCollection(ArrayList())
         return Profession(dto.name, dto.description, skills,abilities, optionalSkills, items, preProfession, postProfession, traits, weapons, armors, dto.url)
     }
 

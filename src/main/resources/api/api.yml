@@ -1082,7 +1082,7 @@ paths:
     post:
       tags:
       - "rools"
-      summary: "Find trait value by roll"
+      summary: "Find trait baseValue by roll"
       consumes:
       - "application/json"
       produces:
@@ -1108,7 +1108,7 @@ paths:
     post:
       tags:
       - "rools"
-      summary: "Find professions value by roll"
+      summary: "Find professions baseValue by roll"
       consumes:
       - "application/json"
       produces:
@@ -2092,10 +2092,10 @@ definitions:
       - OTHER
   ProtectionArea:
     type: "string"
-    enum: [HEAD, BODY, LEFT_HAND, RIGHT_HAND, LEFT_LEG, RIGHT_LEG]
+    enum: [HEAD, BODY, LEFT_HAND, RIGHT_HAND, LEFT_LEG, RIGHT_LEG, WHOLE_BODY]
   ArmorType:
     type: "string"
-    enum: [leather, chain, plate, other]
+    enum: [leather, chain, plate, grimil, studded, scale, other]
   ArmorPoints:
     type: "object"
     properties:
@@ -2124,7 +2124,7 @@ definitions:
         description: "Trait Name (WW, SW, O etc)"
       second:
         type: "number"
-        description: "Trait value"
+        description: "Trait baseValue"
   TableValueDto:
     type: "object"
     properties:
