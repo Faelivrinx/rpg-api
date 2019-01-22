@@ -1,29 +1,29 @@
 package com.mypieceofcode.rpgapi.application.user
 
-import com.mypieceofcode.rpgapi.application.user.auth.LoginRequest
-import com.mypieceofcode.rpgapi.exceptions.BadRequestException
+import com.mypieceofcode.rpgapi.application.user.request.LoginRequest
+import com.mypieceofcode.rpgapi.application.user.request.RegisterRequest
+import com.mypieceofcode.rpgapi.application.user.response.AuthorizationResult
+import com.mypieceofcode.rpgapi.application.user.response.RegisterResult
 import com.mypieceofcode.rpgapi.exceptions.ErrorCode
+import com.mypieceofcode.rpgapi.exceptions.ServiceUnavailableException
 import com.mypieceofcode.rpgapi.exceptions.UnauthorizeException
-import com.sun.org.apache.xpath.internal.operations.Bool
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.*
 import org.springframework.stereotype.Component
 import org.springframework.web.client.HttpClientErrorException
 import org.springframework.web.client.RestTemplate
-import org.springframework.web.client.exchange
+import java.net.ConnectException
 
 @Component
 class AuthorizationService {
 
     @Autowired
-    lateinit var authorizationService: RestTemplate
+    private lateinit var authorizationService: RestTemplate
 
-    @Value("\${auth.key}")
-    lateinit var authKey: String
 
     @Value("\${auth.url}")
-    lateinit var authUrl: String
+    private lateinit var authUrl: String
 
 
     fun loginUser(dto: LoginDto): AuthorizationResult {
@@ -33,9 +33,28 @@ class AuthorizationService {
                 return response.body!!
             }
         } catch (e: HttpClientErrorException) {
-            throw IllegalArgumentException("BAD_REQUEST")
+            throw UnauthorizeException(ErrorCode.LOGIN_REQUEST_FAILED)
+        } catch(e: ConnectException){
+            throw ServiceUnavailableException(ErrorCode.AUTHORIZATION_SERVICE_UNAVAILABLE)
         }
 
+        throw IllegalArgumentException("INVALID RESPONSE")
+    }
+
+    fun registerUser(dto: RegisterRequest) : RegisterResult {
+        try {
+            val response = authorizationService.postForEntity("$authUrl/register", dto, RegisterResult::class.java)
+            if(response.body != null){
+                return response.body!!
+            }
+        } catch (e: HttpClientErrorException) {
+            when(e.statusCode) {
+                HttpStatus.BAD_REQUEST -> throw UnauthorizeException(ErrorCode.REGISTER_BAD_CREDENTIALS)
+                else -> throw UnauthorizeException(ErrorCode.REGISTER_REQUEST_FAILED)
+            }
+        } catch(e: ConnectException){
+            throw ServiceUnavailableException(ErrorCode.AUTHORIZATION_SERVICE_UNAVAILABLE)
+        }
         throw IllegalArgumentException("INVALID RESPONSE")
     }
 
@@ -44,19 +63,14 @@ class AuthorizationService {
         headers.add("Authorization", token)
         val httpEntity = HttpEntity("parameters", headers)
         try {
-            val response = authorizationService.exchange("$authUrl/valid", HttpMethod.POST, httpEntity, ResponseEntity::class.java)
-            if(response.statusCode == HttpStatus.OK){
-                return true
+             val response = authorizationService.exchange("$authUrl/valid", HttpMethod.POST, httpEntity, ResponseEntity::class.java)
+            return if(response.statusCode == HttpStatus.OK){
+                true
             } else {
                 println(response.statusCode)
-                   return false
+                false
             }
         } catch (e: HttpClientErrorException){
-            if(e.message!!.contains("401")){
-                throw UnauthorizeException(ErrorCode.INVALID_AUTH_TOKEN)
-            } else if(e.message!!.contains("400")){
-                throw BadRequestException(ErrorCode.EMPTY_AUTH_HEADER)
-            }
             return false
         }
     }

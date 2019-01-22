@@ -3,7 +3,7 @@ package com.mypieceofcode.rpgapi.domain.enums
 import java.lang.IllegalArgumentException
 
 enum class ProtectionArea {
-    HEAD, BODY, LEFT_HAND, RIGHT_HAND, LEFT_LEG, RIGHT_LEG, INVALID;
+    HEAD, BODY, LEFT_HAND, RIGHT_HAND, LEFT_LEG, RIGHT_LEG, WHOLE_BODY, INVALID;
 
     companion object {
         fun createArea(name: String) : ProtectionArea {

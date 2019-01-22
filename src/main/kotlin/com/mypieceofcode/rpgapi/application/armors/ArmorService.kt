@@ -3,6 +3,7 @@ package com.mypieceofcode.rpgapi.application.armors
 import com.mypieceofcode.rpgapi.application.armors.dto.ArmorDto
 import com.mypieceofcode.rpgapi.application.armors.dto.NewArmorDto
 import com.mypieceofcode.rpgapi.application.armors.dto.UpdateArmorDto
+import com.mypieceofcode.rpgapi.domain.enums.ArmorType
 import com.mypieceofcode.rpgapi.domain.equipment.armors.ArmorRepository
 import com.mypieceofcode.rpgapi.exceptions.EntityAlreadyExistsException
 import com.mypieceofcode.rpgapi.exceptions.ErrorCode
@@ -17,7 +18,8 @@ class ArmorService(
     fun getArmors(): List<ArmorDto> = repository.findAll().map { ArmorDto.fromArmor(it) }
 
     fun createArmor(dto: NewArmorDto) {
-        when (repository.existsByName(dto.name)) {
+        val armor = repository.findByName(dto.name)
+        when (armor != null && armor.type != ArmorType.createArmorType(dto.type)) {
             true -> {
                 throw EntityAlreadyExistsException(ErrorCode.ARMOR_ALREADY_EXISTS)
             }

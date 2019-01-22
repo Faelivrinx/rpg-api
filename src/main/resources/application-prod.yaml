@@ -9,5 +9,4 @@ spring:
       password: Ha$lo123
 
 auth:
-  url: "http://localhost:5000/auth"
-  key: "ranfsa532fsa"
+  url: "http://37.233.98.86:5000/auth"
