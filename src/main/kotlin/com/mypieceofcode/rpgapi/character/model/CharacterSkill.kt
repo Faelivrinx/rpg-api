@@ -1,4 +1,4 @@
-package com.mypieceofcode.rpgapi.character.dto
+package com.mypieceofcode.rpgapi.character.model
 
 import com.mypieceofcode.rpgapi.infrastructure.persistence.DbSkills
 

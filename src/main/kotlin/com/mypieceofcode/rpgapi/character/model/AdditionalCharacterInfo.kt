@@ -1,4 +1,4 @@
-package com.mypieceofcode.rpgapi.character
+package com.mypieceofcode.rpgapi.character.model
 
 data class AdditionalCharacterInfo(
         val name: String,

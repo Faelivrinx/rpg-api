@@ -9,4 +9,5 @@ spring:
       password: h4$lo123
 
 auth:
-  url: "http://37.233.98.86:5000/auth"
+#  url: "http://37.233.98.86:5000/auth"
+  url: "http://localhost:5000/auth"

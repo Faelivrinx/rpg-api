@@ -10,7 +10,7 @@ import org.apache.commons.lang3.StringUtils.isBlank
 data class Skill(
         val name: String,
         val description: String,
-        val trait: Trait = Trait.OTHER,
+        val trait: Trait = Trait.S,
         val type: SkillType = SkillType.BASIC,
         val id: String? = null
 ) : DomainObject() {
